@@ -1,0 +1,22 @@
+{
+    "name": "vkbansal/frontmatter",
+    "description": "Frontmatter allows page-specific variables to be included at the top of a template using the YAML or JSON format.",
+    "keywords": ["yaml", "front-matter", "parser", "frontmatter", "json", "front", "matter"],
+    "authors": [
+        {
+            "name": "Vivek Kumar Bansal",
+            "email": "contact@vkbansal.me"
+        }
+    ],
+    "autoload": {
+        "psr-4" : {
+            "VKBansal\\FrontMatter\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/yaml": "2.5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*"
+    }
+}
