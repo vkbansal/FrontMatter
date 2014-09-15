@@ -8,6 +8,13 @@
             "email": "contact@vkbansal.me"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/vkbansal/FrontMatter"
+        }
+    ],
+    "license": "MIT",
     "autoload": {
         "psr-4" : {
             "VKBansal\\FrontMatter\\": "src/"
