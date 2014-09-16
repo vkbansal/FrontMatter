@@ -129,6 +129,91 @@ layout: layout.html
 <body>Hello</body>' (length=58)
 ```
 ##Document
-TODO: documentation of `Docuemnt`
+###Document::__construct([string $content [, array $header]])
+The constructors can take two arguments. First argument is the body/content of the document as a `string`. Second is config/header in form of an `array`.
+```php
+<?php
+require '../vendor/autoload.php';
+
+use VKBansal\FrontMatter\Document;
+
+$document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
+```
+###mixed Document::getConfig([string $varName])
+This method returns config value(s). If no argument is provided, It'll return entire config else it'll return config value with given name.
+```php
+var_dump($document->getConfig('title'));
+var_dump($document->getConfig());
+```
+output
+```php
+string 'test' (length=4)
+array (size=2)
+  'title' => string 'test' (length=4)
+  'layout' => string 'layout.html' (length=11)
+```
+###Document::setConfig(mixed $prop [, mixed $value])
+This method sets config value(s). If only one argument is provided and is `array`, It'll replace entire config. If first argument is a `string`, a config value with that name will be set with second argument as its value if given else a `null`
+```php
+$document->setConfig('title', 'Another Title');
+var_dump($document->getConfig());
+
+$document->setConfig(['title'=> 'Random Title', 'category' => 'yet another category']);
+var_dump($document->getConfig());
+```
+output
+```php
+array (size=2)
+  'title' => string 'Another Title' (length=13)
+  'layout' => string 'layout.html' (length=11)
+array (size=2)
+  'title' => string 'Random Title' (length=12)
+  'category' => string 'yet another category' (length=20)
+```
+###string Document::getContent()
+Returns the body/content of the document
+```php
+var_dump($document->getContent());
+```
+output
+```php
+string '<body>Hello</body>' (length=18)
+```
+###Document::setContent(string $content)
+Sets the body/content of the document
+```php
+$document->setContent('Lorem ipsum');
+var_dump($document->getContent());
+```
+output
+```php
+string 'Lorem ipsum' (length=11)
+```
+
+###Array Access
+Document can be used as an `array` for accessing header/config.
+```php
+echo $document["title"]."<br>";
+$document["category"] = "Some Category";
+echo $document["category"];
+unset($document["category"]);
+var_dump(isset($document["category"]));
+```
+output
+```php
+Random Title
+Some Category
+boolean false
+```
+
+###Document as string
+Document can be used as string. It returns the document content/body.
+```php
+echo $document;
+```
+output
+```
+Lorem ipsum
+```
 ##License
 [MIT](LICENSE.md)
