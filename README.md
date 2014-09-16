@@ -87,6 +87,18 @@ var_dump($doc->getContent());
 ```
 It produces the following result
 ```
+array (size=2)
+  'layout' => string 'custom' (length=6)
+  'my_list' => 
+    array (size=3)
+      0 => string 'one' (length=3)
+      1 => string 'two' (length=3)
+      2 => string 'three' (length=5)
+string 'Main Title
+-----
+### Subtilte
+
+Lorem ipsum......' (length=48)
 ```
 ####string Parser::dump(Document $document [, boolean $asJSON])
 This method takes an Instance of `VKBansal\FrontMatter\Document` as its first argument. 
@@ -110,6 +122,11 @@ var_dump($dump_j);
 ```
 It produces the following result
 ```
+string '---
+title: test
+layout: layout.html
+---
+<body>Hello</body>' (length=58)
 ```
 ##Document
 TODO: documentation of `Docuemnt`
