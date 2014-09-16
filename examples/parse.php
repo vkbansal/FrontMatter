@@ -11,5 +11,8 @@ $json = file_get_contents(__DIR__.'/../test/resources/json.md');
 $doc_y = Parser::parse($yaml);
 $doc_j = Parser::parse($json);
 
+var_dump($doc_j->getConfig());
 var_dump($doc_j->getContent());
+
+var_dump($doc_y->getConfig());
 var_dump($doc_y->getContent());
