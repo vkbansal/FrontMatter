@@ -86,7 +86,7 @@ var_dump($doc->getConfig());
 var_dump($doc->getContent());
 ```
 It produces the following result
-```
+```php
 array (size=2)
   'layout' => string 'custom' (length=6)
   'my_list' => 
@@ -121,7 +121,7 @@ var_dump($dump_y);
 var_dump($dump_j);
 ```
 It produces the following result
-```
+```php
 string '---
 title: test
 layout: layout.html
