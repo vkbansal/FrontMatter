@@ -127,6 +127,14 @@ title: test
 layout: layout.html
 ---
 <body>Hello</body>' (length=58)
+
+string ';;;
+{
+  "title": "test"
+  "layout": "layout.html"
+}
+;;;
+<body>Hello</body>' (length=72)
 ```
 ##Document
 ###Document::__construct([string $content [, array $header]])
@@ -152,7 +160,7 @@ array (size=2)
   'title' => string 'test' (length=4)
   'layout' => string 'layout.html' (length=11)
 ```
-###Document::setConfig(mixed $prop [, mixed $value])
+###void Document::setConfig(mixed $prop [, mixed $value])
 This method sets config value(s). If only one argument is provided and is `array`, It'll replace entire config. If first argument is a `string`, a config value with that name will be set with second argument as its value if given else a `null`
 ```php
 $document->setConfig('title', 'Another Title');
@@ -179,7 +187,7 @@ output
 ```php
 string '<body>Hello</body>' (length=18)
 ```
-###Document::setContent(string $content)
+###void Document::setContent(string $content)
 Sets the body/content of the document
 ```php
 $document->setContent('Lorem ipsum');
