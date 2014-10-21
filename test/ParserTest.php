@@ -68,4 +68,15 @@ EOF
 EOF
         , $dump_j);
     }
+
+    public function testIsValid(){
+        $yaml = file_get_contents(__DIR__.'/resources/yaml.md');
+        $json = file_get_contents(__DIR__.'/resources/json.md');
+
+        $test =  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et aut molestias quam vitae voluptatibus a quod, aliquid. Ipsam alias repudiandae, similique in odit eum quod voluptatibus, repellat minima explicabo fuga.';
+
+        $this->assertTrue(Parser::isValid($yaml));
+        $this->assertTrue(Parser::isValid($json));
+        $this->assertFalse(Parser::isValid($test));
+    }
 }

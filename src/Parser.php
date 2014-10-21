@@ -68,4 +68,16 @@ class Parser {
             return ";;;\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n;;;\n".$document->getContent();
         }
     }
+
+    /**
+     * Determines if given content is valid 
+     * @param  string  $input  Input to be validated
+     * @return boolean         True if valid else false
+     * @since 1.1.0 
+     */
+    public static function isValid($input){
+
+        return (preg_match(self::$yamlSeperator, $input) === 1) || (preg_match(self::$jsonSeperator, $input) === 1);
+
+    }
 }
