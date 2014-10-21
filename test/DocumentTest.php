@@ -40,4 +40,14 @@ class DocumentTest extends PHPUnit_Framework_TestCase{
 
         $this->assertFalse(isset($this->document['title']));
     }
+
+    public function testPropertyAccess(){
+        $this->assertEquals('Random Title', $this->document->title);
+        $this->document->title = 'Title';
+        $this->assertEquals('Title', $this->document->title);
+
+        unset($this->document->title);
+
+        $this->assertFalse(isset($this->document->title));   
+    }
 }

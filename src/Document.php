@@ -34,6 +34,41 @@ class Document implements \ArrayAccess{
         return $this->getContent();
     }
 
+
+    /**
+     * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
+     * @return mixed
+     * @since 1.0.0
+     */
+    public function __get($name){
+        return $this->header[$name];
+    }
+
+    /**
+     * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
+     * @since 1.0.0
+     */
+    public function __set($name, $value){
+        $this->header[$name] = $value;
+    }
+
+    /**
+     * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
+     * @return boolean
+     * @since 1.0.0
+     */
+    public function __isset($name){
+        return isset($this->header[$name]);
+    }
+
+    /**
+     * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
+     * @since 1.0.0
+     */
+    public function __unset($name){
+        unset($this->header[$name]);
+    }
+
     /**
      * Whether or not an offset exists.
      * This method is executed when using isset() or empty() on objects implementing ArrayAccess.

@@ -214,6 +214,22 @@ Some Category
 boolean false
 ```
 
+###Property Access
+Header/Config can also be accessed by property
+```php
+echo $document->title."<br>";
+$document->category = "Some Category";
+echo $document->category;
+unset($document->category);
+var_dump(isset($document->category));
+```
+output
+```php
+Random Title
+Some Category
+boolean false
+```
+
 ###Document as string
 Document can be used as string. It returns the document content/body.
 ```php
