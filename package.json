@@ -1,0 +1,28 @@
+{
+  "name": "FrontMatter",
+  "version": "1.0.0",
+  "description": "Frontmatter allows page-specific variables to be included at the top of a template using the YAML or JSON format.",
+  "main": "gulpfile.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vkbansal/FrontMatter.git"
+  },
+  "author": "Vivek Kumar Bansal <vkb0310@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vkbansal/FrontMatter/issues"
+  },
+  "homepage": "https://github.com/vkbansal/FrontMatter",
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-notify": "^2.0.0",
+    "gulp-phpunit": "^0.7.0"
+  }
+}
