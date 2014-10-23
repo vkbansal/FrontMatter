@@ -1,0 +1,4 @@
+formatter.name: pretty
+suites:
+  my_suite:
+    namespace: VKBansal\FrontMatter

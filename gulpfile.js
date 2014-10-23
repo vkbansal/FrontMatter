@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-    phpunit = require('gulp-phpunit'),
+    phpspec = require('gulp-phpspec'),
     notify = require('gulp-notify');
 
 gulp.task('default', ['watch']);
@@ -9,20 +9,20 @@ gulp.task('watch', function(){
 });
 
 gulp.task('test', function(){
-    return gulp.src('phpunit.xml.dist')
-        .pipe(phpunit('', {notify: true, debug:true}))
+    return gulp.src('phpspec.yml.dist')
+        .pipe(phpspec('', {notify: true, debug:true}))
         .on('error', function(){
             args = Array.prototype.slice.call(arguments)
             notify.onError({
                 title: "Tests Failed",
                 message : "One or more test have failed!",
-                icon:    __dirname + '/node_modules/gulp-phpunit/assets/test-fail.png'
+                icon:    __dirname + '/node_modules/gulp-phpspec/assets/test-fail.png'
             }).apply(this, args);
             this.emit('end');
         })
         .pipe(notify({
             title: "Tests passed",
             message : "All tests passed!",
-            icon:    __dirname + '/node_modules/gulp-phpunit/assets/test-pass.png'
+            icon:    __dirname + '/node_modules/gulp-phpspec/assets/test-pass.png'
         }));
 });
