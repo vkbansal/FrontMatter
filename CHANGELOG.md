@@ -1,5 +1,10 @@
 #Chanelog
 
+##v1.1.0
+- Added `Parser::isValid()`
+- Added `Document::merge()`
+- Added `Document::inherit()`
+
 ##v1.0.0
 - Header/Config can now also be accessed via properties
 
