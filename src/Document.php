@@ -10,20 +10,38 @@ namespace VKBansal\FrontMatter;
  */
 class Document implements \ArrayAccess, \IteratorAggregate{
 
+    /**
+     * Constants for Document::merge() behaviour
+     * @since 1.1.0
+     */
     const MERGE_CONFIG = 0;
     const MERGE_CONTENT_REPLACE = 1;
     const MERGE_CONTENT_APPEND = 2;
     const MERGE_ALL_REPLACE = 3;
     const MERGE_ALL_APPEND = 4;
 
+    /**
+     * Constants for Document::inherit() behaviour
+     * @since 1.1.0
+     */
     const INHERIT_CONFIG = 5;
     const INHERIT_CONTENT_REPLACE = 6;
     const INHERIT_CONTENT_APPEND = 7;
     const INHERIT_ALL_REPLACE = 8;
     const INHERIT_ALL_APPEND = 9;
     
+    /**
+     * Content of the document 
+     * @var string
+     * @since 1.0.0
+     */
     private $content;
 
+    /**
+     * Config of the document
+     * @var array
+     * @since 1.0.0
+     */
     private $config;
 
     /**

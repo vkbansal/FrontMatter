@@ -12,7 +12,7 @@ Create or update your composer.json and run `composer update`
 ```json
 {
     "require": {
-        "vkbansal/frontmatter": "dev-master"
+        "vkbansal/frontmatter": "~1.1.0"
     }
 }
 ```
@@ -136,8 +136,29 @@ string ';;;
 ;;;
 <body>Hello</body>' (length=72)
 ```
-##Document
-###Document::__construct([string $content [, array $header]])
+####boolean Parser::isValid(string $content)
+Checks if given content has valid structure. It automatically handles YAML/JSON.
+```php
+Parser::isValid('Lorem ipsum....'); //false
+Parser::isValid(<<<EOF
+---
+layout: custom
+my_list:
+    - one
+    - two
+    - three
+---
+Main Title
+-----
+### Subtilte
+
+Lorem ipsum......
+EOF
+); //true
+```
+
+###Document
+####Document::__construct([string $content [, array $header]])
 The constructors can take two arguments. First argument is the body/content of the document as a `string`. Second is config/header in form of an `array`.
 ```php
 <?php
@@ -147,7 +168,7 @@ use VKBansal\FrontMatter\Document;
 
 $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
 ```
-###mixed Document::getConfig([string $varName])
+####mixed Document::getConfig([string $varName])
 This method returns config value(s). If no argument is provided, It'll return entire config else it'll return config value with given name.
 ```php
 var_dump($document->getConfig('title'));
@@ -160,7 +181,7 @@ array (size=2)
   'title' => string 'test' (length=4)
   'layout' => string 'layout.html' (length=11)
 ```
-###void Document::setConfig(mixed $prop [, mixed $value])
+####void Document::setConfig(mixed $prop [, mixed $value])
 This method sets config value(s). If only one argument is provided and is `array`, It'll replace entire config. If first argument is a `string`, a config value with that name will be set with second argument as its value if given else a `null`
 ```php
 $document->setConfig('title', 'Another Title');
@@ -178,7 +199,7 @@ array (size=2)
   'title' => string 'Random Title' (length=12)
   'category' => string 'yet another category' (length=20)
 ```
-###string Document::getContent()
+####string Document::getContent()
 Returns the body/content of the document
 ```php
 var_dump($document->getContent());
@@ -187,7 +208,7 @@ output
 ```php
 string '<body>Hello</body>' (length=18)
 ```
-###void Document::setContent(string $content)
+####void Document::setContent(string $content)
 Sets the body/content of the document
 ```php
 $document->setContent('Lorem ipsum');
@@ -197,6 +218,12 @@ output
 ```php
 string 'Lorem ipsum' (length=11)
 ```
+
+####void Document::merge(Document $newDoc [, int $mode = Document::MERGE_CONFIG])
+- TODO documentation
+
+####void Document::inherit(Document $parent [, int $mode = Document::INHERIT_CONFIG])
+- TODO documentation
 
 ###Array Access
 Document can be used as an `array` for accessing header/config.
