@@ -8,21 +8,33 @@ namespace VKBansal\FrontMatter;
  * @author Vivek Kumar Bansal <contact@vkbansal.me>
  * @license MIT
  */
-class Document implements \ArrayAccess{
+class Document implements \ArrayAccess, \IteratorAggregate{
+
+    const MERGE_CONFIG = 0;
+    const MERGE_CONTENT_REPLACE = 1;
+    const MERGE_CONTENT_APPEND = 2;
+    const MERGE_ALL_REPLACE = 3;
+    const MERGE_ALL_APPEND = 4;
+
+    const INHERIT_CONFIG = 5;
+    const INHERIT_CONTENT_REPLACE = 6;
+    const INHERIT_CONTENT_APPEND = 7;
+    const INHERIT_ALL_REPLACE = 8;
+    const INHERIT_ALL_APPEND = 9;
     
     private $content;
 
-    private $header;
+    private $config;
 
     /**
      * Document Constructor
      * @param string $content content/body of the document
-     * @param array  $header  config/header of the document
+     * @param array  $config  config/header of the document
      * @since 1.0.0
      */
-    public function __construct($content = '', $header = []){
+    public function __construct($content = '', $config = []){
         $this->content = $content;
-        $this->header = $header;
+        $this->config = $config;
     }
 
     /**
@@ -41,7 +53,7 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function __get($name){
-        return $this->header[$name];
+        return $this->config[$name];
     }
 
     /**
@@ -49,7 +61,7 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function __set($name, $value){
-        $this->header[$name] = $value;
+        $this->config[$name] = $value;
     }
 
     /**
@@ -58,7 +70,7 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function __isset($name){
-        return isset($this->header[$name]);
+        return isset($this->config[$name]);
     }
 
     /**
@@ -66,7 +78,7 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function __unset($name){
-        unset($this->header[$name]);
+        unset($this->config[$name]);
     }
 
     /**
@@ -76,7 +88,7 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function offsetExists($offset){
-        return isset($this->header[$offset]);
+        return isset($this->config[$offset]);
     }
 
     /**
@@ -86,7 +98,7 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function offsetGet($offset){
-        return $this->header[$offset];
+        return $this->config[$offset];
     }
 
     /**
@@ -95,7 +107,7 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function offsetSet($offset, $value){
-        $this->header[$offset] = $value;
+        $this->config[$offset] = $value;
     }
 
     /**
@@ -104,7 +116,16 @@ class Document implements \ArrayAccess{
      * @since 1.0.0
      */
     public function offsetUnset($offset){
-        unset($this->header[$offset]);
+        unset($this->config[$offset]);
+    }
+
+    /**
+     * @see "http://php.net/manual/en/class.iteratoraggregate.php"
+     * @return void
+     * @since 1.1.0
+     */
+    public function getIterator(){
+        return new \ArrayIterator($this->config);
     }
     
     /**
@@ -115,11 +136,11 @@ class Document implements \ArrayAccess{
      */
     public function getConfig($varName = null){
 
-        if($varName !== null && array_key_exists($varName, $this->header)){
-            return $this->header[$varName];
+        if($varName !== null && array_key_exists($varName, $this->config)){
+            return $this->config[$varName];
         }
 
-        return $this->header;
+        return $this->config;
         
     }
 
@@ -132,9 +153,9 @@ class Document implements \ArrayAccess{
     public function setConfig($property, $value = null){
 
         if(is_array($property)){
-            $this->header = $property;
+            $this->config = $property;
         } elseif (is_string($property)){
-            $this->header[$property] = $value;
+            $this->config[$property] = $value;
         }
     }
 
@@ -154,5 +175,73 @@ class Document implements \ArrayAccess{
      */
     public function setContent($content){
         $this->content = $content;
+    }
+
+    /**
+     * Inherit from parent document
+     * @param  Document $parent Document to be inherited
+     * @param  int      $mode   Inherit Mode
+     * @return [type]           [description]
+     * @since 1.1.0
+     */
+    public function inherit(Document $parent, $mode = self::INHERIT_CONFIG){
+
+        if(in_array($mode, [self::INHERIT_CONFIG, self::INHERIT_ALL_APPEND, self::INHERIT_ALL_REPLACE])){
+            $this->config = $this->mergeRecursive($parent->getConfig(), $this->config);
+        }
+
+        if(in_array($mode, [self::INHERIT_ALL_REPLACE, self::INHERIT_CONTENT_REPLACE])){
+            $this->content = $parent->getContent();
+        }
+
+        if(in_array($mode, [self::INHERIT_ALL_APPEND, self::INHERIT_CONTENT_APPEND])){
+            $this->content = $parent->getContent().$this->content;
+        }
+
+    }
+
+    /**
+     * Merge current document with given document
+     * @param  Document $document Document to be merged in
+     * @param  int      $mode     Merge mode
+     * @return [type]             [description]
+     * @since 1.1.0
+     */
+    public function merge(Document $document, $mode = self::MERGE_CONFIG){
+
+        if(in_array($mode, [self::MERGE_CONFIG, self::MERGE_ALL_APPEND, self::MERGE_ALL_REPLACE])){
+            $this->config = $this->mergeRecursive($this->config, $document->getConfig());
+        }
+
+        if(in_array($mode, [self::MERGE_ALL_REPLACE, self::MERGE_CONTENT_REPLACE])){
+            $this->content = $document->getContent();
+        }
+
+        if(in_array($mode, [self::MERGE_ALL_APPEND, self::MERGE_CONTENT_APPEND])){
+            $this->content .= $document->getContent();
+        }
+    }
+
+    /**
+     * Recursively merges second array into first
+     * @param  array $itemA Array to be merged in
+     * @param  array $itemB Array to be merged
+     * @return array        merged array
+     * @since 1.1.0
+     */
+    private function mergeRecursive($itemA, $itemB){
+        
+        foreach ($itemB as $key => $value) {
+            if(is_integer($key)){
+                $itemA[] = $value;
+            } elseif (array_key_exists($key, $itemA) && is_array($itemA[$key]) && is_array($value)){
+                $itemA[$key] = $this->mergeRecursive($itemA[$key], $value);
+            }
+            else{
+                $itemA[$key] = $value;
+            }
+        }
+
+        return $itemA;
     }
 }
