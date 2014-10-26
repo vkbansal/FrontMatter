@@ -104,13 +104,6 @@ Lorem ipsum......' (length=48)
 This method takes an Instance of `VKBansal\FrontMatter\Document` as its first argument. 
 An optional second argument can be provided as a boolean. Its default value is `false` which outputs `YAML`. If it's set to `true`, output will be in `JSON` format. 
 ```php
-<?php
-
-require '../vendor/autoload.php';
-
-use VKBansal\FrontMatter\Parser;
-use VKBansal\FrontMatter\Document;
-
 $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
 
 $dump_y = Parser::dump($document);
@@ -161,11 +154,6 @@ EOF
 ####Document::__construct([string $content [, array $header]])
 The constructors can take two arguments. First argument is the body/content of the document as a `string`. Second is config/header in form of an `array`.
 ```php
-<?php
-require '../vendor/autoload.php';
-
-use VKBansal\FrontMatter\Document;
-
 $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
 ```
 ####mixed Document::getConfig([string $varName])
@@ -220,10 +208,43 @@ string 'Lorem ipsum' (length=11)
 ```
 
 ####$this Document::merge(Document $newDoc [, int $mode = Document::MERGE_CONFIG])
-- TODO documentation
+Merge `Document`(s). This method is chainable.
+```php
+$document = new Document('Lorem Ipsum dol sidur.....', ['title'=> 'Not A Random Title', 'layout' => 'grid']);
+$newDoc = new Document('Lorem Ipsum.....', ['title'=> 'Random Title', 'category' => 'just another category']);
+
+$document->merge($newDoc);
+
+var_dump($document->getConfig()); 
+//['title'=> 'Random Title', 'layout'=> 'grid', 'category' => 'just another category']
+```
+| Mode Constant         | Mode Description                                                             |
+|-----------------------|------------------------------------------------------------------------------|
+| MERGE_CONFIG          | Merge only config.                                                           |
+| MERGE_CONTENT_REPLACE | Merge only content. Replaces current content with that from merging document |
+| MERGE_CONTENT_APPEND  | Merge only content. Appends content from merging document to current one.    |
+| MERGE_ALL_REPLACE     | Merge both config and content. Same as `MERGE_CONTENT_REPLACE`.              |
+| MERGE_ALL_APPEND      | Merge both config and content. Same as `MERGE_CONTENT_APPEND`.               |
 
 ####$this Document::inherit(Document $parent [, int $mode = Document::INHERIT_CONFIG])
-- TODO documentation
+Inherit from `Document`(s). This method is chainable.
+```php
+$parent = new Document('Lorem Ipsum dol sidur.....', ['title'=> 'Not A Random Title', 'layout' => 'grid']);
+$document = new Document('Lorem Ipsum.....', ['title'=> 'Random Title', 'category' => 'just another category']);
+
+$document->inherit($parent);
+
+var_dump($document->getConfig()); 
+//['title'=> 'Random Title', 'layout'=> 'grid', 'category' => 'just another category']
+
+```
+| Mode Constant           | Mode Description                                                                 |
+|-------------------------|----------------------------------------------------------------------------------|
+| INHERIT_CONFIG          | Inherit only config.                                                             |
+| INHERIT_CONTENT_REPLACE | Inherit only content. Replaces current content with that form parent document.   |
+| INHERIT_CONTENT_APPEND  | Inherit only content. Prepends content from parent document to current document. |
+| INHERIT_ALL_REPLACE     | Inherit both config and content. Same as `INHERIT_CONTENT_REPLACE`               |
+| INHERIT_ALL_APPEND      | Inherit both config and content. Same as `INHERIT_CONTENT_APPEND`                |
 
 ###Array Access
 Document can be used as an `array` for accessing header/config.

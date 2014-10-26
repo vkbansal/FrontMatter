@@ -1,5 +1,8 @@
 #Chanelog
 
+##v1.1.1
+- Made methods chaninable
+
 ##v1.1.0
 - Added `Parser::isValid()`
 - Added `Document::merge()`
