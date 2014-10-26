@@ -159,13 +159,13 @@ class Document implements \ArrayAccess, \IteratorAggregate{
         }
 
         return $this->config;
-        
     }
 
     /**
      * Set header/config of the document
      * @param  mixed $property If an array is provided, header is replaced. If a string is provided, the poperty is replaced/set.
      * @param  mixed $value    Value of the property to set
+     * @return $this
      * @since 1.0.0
      */
     public function setConfig($property, $value = null){
@@ -175,6 +175,7 @@ class Document implements \ArrayAccess, \IteratorAggregate{
         } elseif (is_string($property)){
             $this->config[$property] = $value;
         }
+        return $this;
     }
 
     /**
@@ -189,17 +190,19 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * Set the content of the document
      * @param string  $content Content of the document
+     * @return $this
      * @since 1.0.0
      */
     public function setContent($content){
         $this->content = $content;
+        return $this;
     }
 
     /**
      * Inherit from parent document
      * @param  Document $parent Document to be inherited
      * @param  int      $mode   Inherit Mode
-     * @return [type]           [description]
+     * @return $this
      * @since 1.1.0
      */
     public function inherit(Document $parent, $mode = self::INHERIT_CONFIG){
@@ -215,14 +218,14 @@ class Document implements \ArrayAccess, \IteratorAggregate{
         if(in_array($mode, [self::INHERIT_ALL_APPEND, self::INHERIT_CONTENT_APPEND])){
             $this->content = $parent->getContent().$this->content;
         }
-
+        return $this;
     }
 
     /**
      * Merge current document with given document
      * @param  Document $document Document to be merged in
      * @param  int      $mode     Merge mode
-     * @return [type]             [description]
+     * @return $this
      * @since 1.1.0
      */
     public function merge(Document $document, $mode = self::MERGE_CONFIG){
@@ -238,6 +241,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
         if(in_array($mode, [self::MERGE_ALL_APPEND, self::MERGE_CONTENT_APPEND])){
             $this->content .= $document->getContent();
         }
+
+        return $this;
     }
 
     /**

@@ -181,8 +181,8 @@ array (size=2)
   'title' => string 'test' (length=4)
   'layout' => string 'layout.html' (length=11)
 ```
-####void Document::setConfig(mixed $prop [, mixed $value])
-This method sets config value(s). If only one argument is provided and is `array`, It'll replace entire config. If first argument is a `string`, a config value with that name will be set with second argument as its value if given else a `null`
+####$this Document::setConfig(mixed $prop [, mixed $value])
+This method sets config value(s). If only one argument is provided and is `array`, It'll replace entire config. If first argument is a `string`, a config value with that name will be set with second argument as its value if given else a `null`. This method is chainable.
 ```php
 $document->setConfig('title', 'Another Title');
 var_dump($document->getConfig());
@@ -208,8 +208,8 @@ output
 ```php
 string '<body>Hello</body>' (length=18)
 ```
-####void Document::setContent(string $content)
-Sets the body/content of the document
+####$this Document::setContent(string $content)
+Sets the body/content of the document. This method is chainable.
 ```php
 $document->setContent('Lorem ipsum');
 var_dump($document->getContent());
@@ -219,10 +219,10 @@ output
 string 'Lorem ipsum' (length=11)
 ```
 
-####void Document::merge(Document $newDoc [, int $mode = Document::MERGE_CONFIG])
+####$this Document::merge(Document $newDoc [, int $mode = Document::MERGE_CONFIG])
 - TODO documentation
 
-####void Document::inherit(Document $parent [, int $mode = Document::INHERIT_CONFIG])
+####$this Document::inherit(Document $parent [, int $mode = Document::INHERIT_CONFIG])
 - TODO documentation
 
 ###Array Access
