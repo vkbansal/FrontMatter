@@ -12,7 +12,7 @@ gulp.task('test', function(){
     return gulp.src('phpspec.yml.dist')
         .pipe(phpspec('', {notify: true, debug:true}))
         .on('error', function(){
-            args = Array.prototype.slice.call(arguments)
+            args = Array.prototype.slice.call(arguments);
             notify.onError({
                 title: "Tests Failed",
                 message : "One or more test have failed!",
