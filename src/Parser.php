@@ -16,7 +16,7 @@ class Parser {
      * Regex for YAML seperators
      * @var string
      * @since 1.0.0
-     * @depricated  since 1.2.0
+     * @deprecated  since 1.2.0
      */
     private static $yamlSeperator = "/^-{3}\r?\n(.*)\r?\n-{3}\r?\n/s";
 
@@ -24,7 +24,7 @@ class Parser {
      * Regex for JSON seperators
      * @var string
      * @since 1.0.0
-     * @depricated  since 1.2.0
+     * @deprecated  since 1.2.0
      */
     private static $jsonSeperator = "/^;{3}\r?\n(.*)\r?\n;{3}\r?\n/s";
 
@@ -34,6 +34,9 @@ class Parser {
      * @since 1.2.0
      */
     private static $matcherRegex = "/^-{3}\s?(\w*)\r?\n(.*)\r?\n-{3}\r?\n(.*)/s";
+
+    const DUMP_YAML = 'yaml';
+    const DUMP_JSON = 'json';
 
     /**
      * Parse the given content
@@ -64,11 +67,22 @@ class Parser {
      * @return string
      * @since 1.0.0
      */
-    public static function dump (Document $document, $asJSON = false){
-        if(!$asJSON){
-            return "---\n".Yaml::dump($document->getConfig())."---\n".$document->getContent();
-        } else {
+    public static function dump (Document $document, $mode = self::DUMP_YAML)
+    {
+        //Deprecated
+        if($mode === true){
             return ";;;\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n;;;\n".$document->getContent();
+        }
+
+        switch ($mode) {
+            case 'yaml':
+                return "---\n".Yaml::dump($document->getConfig())."---\n".$document->getContent();
+
+            case 'json':
+                return "--- json\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n---\n".$document->getContent();
+            
+            default:
+                return "---\n".Yaml::dump($document->getConfig())."---\n".$document->getContent();
         }
     }
 

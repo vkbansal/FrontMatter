@@ -18,39 +18,9 @@ Create or update your composer.json and run `composer update`
 ```
 ##Supported Formats
 
-###YAML
-```
----
-layout: custom
-my_list:
-    - one
-    - two
-    - three
----
-Main Title
------
-### Subtilte
-
-Lorem ipsum......
-```
-###JSON
-```
---- json
-{
-    "layout": "custom",
-    "my_list": [
-      "one",
-      "two",
-      "three"
-    ]
-}
----
-Main Title
------
-### Subtilte
-
-Lorem ipsum......
-```
+- YAML
+- JSON
+- INI (coming soon)
 
 ##Usage
 ###Parse

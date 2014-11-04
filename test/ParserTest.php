@@ -87,6 +87,24 @@ EOF
         , $dump_j);
     }
 
+    public function testDumpJSON2()
+    {
+        $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
+
+        $dump_j = Parser::dump($document, Parser::DUMP_JSON);
+
+        $this->assertSame(<<<EOF
+--- json
+{
+    "title": "test",
+    "layout": "layout.html"
+}
+---
+<body>Hello</body>
+EOF
+        , $dump_j);
+    }
+
     public function testIsValid(){
         $yaml = file_get_contents(__DIR__.'/resources/yaml.md');
         $json = file_get_contents(__DIR__.'/resources/json.md');

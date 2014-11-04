@@ -76,6 +76,21 @@ EOF
         );
     }
 
+    function it_should_dump_json2()
+    {
+        $document = new Document('<body>Hello</body>', ['title' => 'test', 'layout' => 'layout.html']);
+        $this->dump($document, 'json')->shouldReturn(<<<EOF
+--- json
+{
+    "title": "test",
+    "layout": "layout.html"
+}
+---
+<body>Hello</body>
+EOF
+        );
+    }
+
     function it_should_validate_automatically(){
         $this->isValid(file_get_contents($this->dir.'yaml.md'))->shouldBeTrue();
         $this->isValid(file_get_contents($this->dir.'json.md'))->shouldBeTrue();
