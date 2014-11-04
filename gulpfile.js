@@ -1,28 +1,66 @@
-var gulp = require('gulp'),
+var path = require('path'),
+    gulp = require('gulp'),
+    phpunit = require('gulp-phpunit'),
     phpspec = require('gulp-phpspec'),
-    notify = require('gulp-notify');
+    notify = require('gulp-notify'),
+    test = null,
+    notice = {
+        phpspec:{
+            pass:{
+                title: "PHPSpec",
+                message: "All specs passed!"
+            },
+            fail:{
+                title: "PHPSpec",
+                message: "One or more specs failed!"
+            },
+        },
+        phpunit:{
+            pass:{
+                title: "PHPUnit",
+                message: "All tests passed!"
+            },
+            fail:{
+                title: "PHPUnit",
+                message: "One or more tests failed!"
+            },
+        }
+    };
 
-gulp.task('default', ['watch']);
+
+
+function notifyText(test, status){
+    var obj = notice[test][status];
+    obj.icon = path.join(process.cwd(), 'node_modules', 'gulp-'+ test, 'assets', 'test-' + status +'.png');
+    return obj;
+}
+
+function handleErrors(){
+    args = Array.prototype.slice.call(arguments);
+    notify.onError(notifyText(test,'fail')).apply(this, args);
+    this.emit('end');
+}
+
+gulp.task('default', ['phpspec', 'phpunit', 'watch']);
 
 gulp.task('watch', function(){
-    gulp.watch('**/*.php', ['test']);
+    return gulp.watch('**/*.php', ['phpspec', 'phpunit']);
 });
 
-gulp.task('test', function(){
+gulp.task('phpspec', function(){
+    test = 'phpspec';
     return gulp.src('phpspec.yml.dist')
         .pipe(phpspec('', {notify: true, debug:true}))
-        .on('error', function(){
-            args = Array.prototype.slice.call(arguments);
-            notify.onError({
-                title: "Tests Failed",
-                message : "One or more test have failed!",
-                icon:    __dirname + '/node_modules/gulp-phpspec/assets/test-fail.png'
-            }).apply(this, args);
-            this.emit('end');
-        })
-        .pipe(notify({
-            title: "Tests passed",
-            message : "All tests passed!",
-            icon:    __dirname + '/node_modules/gulp-phpspec/assets/test-pass.png'
-        }));
+        .on('error', handleErrors)
+        .pipe(notify(notifyText(test, 'pass')));
 });
+
+gulp.task('phpunit', function(){
+    test = 'phpunit';
+    return gulp.src('phpunit.xml.dist')
+        .pipe(phpunit('', {notify: true, debug:true}))
+        .on('error', handleErrors)
+        .pipe(notify(notifyText(test, 'pass')));
+});
+
+gulp.task('test', ['phpspec', 'phpunit']);
