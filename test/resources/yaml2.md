@@ -1,4 +1,4 @@
----
+--- yaml
 layout: custom
 my_list:
     - one

@@ -1,4 +1,4 @@
-;;;
+--- json
 {
     "layout": "custom",
     "my_list": [
@@ -7,7 +7,7 @@
       "three"
     ]
 }
-;;;
+---
 Main Title
 -----
 ### Subtilte

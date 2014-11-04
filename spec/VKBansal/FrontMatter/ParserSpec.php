@@ -8,36 +8,46 @@ use VKBansal\FrontMatter\Document;
 
 class ParserSpec extends ObjectBehavior
 {
-    function it_should_parse_yaml(){
+    private $sample_header = [
+        'layout' => 'custom',
+        'my_list' => [ 'one', 'two', 'three']
+    ];
 
-        $this->parse(file_get_contents(__DIR__.'/../../resources/yaml.md'))->getConfig()->shouldReturn([
-            'layout' => 'custom',
-            'my_list' => [ 'one', 'two', 'three']
-        ]);
-        $this->parse(file_get_contents(__DIR__.'/../../resources/yaml.md'))->getContent()->shouldReturn(<<<EOF
+    private $sample_content = <<<EOF
 Main Title
 -----
 ### Subtilte
 
 Lorem ipsum......
-EOF
-        );
+EOF;
+
+    private $dir;
+
+    function let()
+    {
+        $this->dir = __DIR__.'/../../../test/resources/';
     }
 
-    function it_should_parse_json(){
+    function it_should_parse_yaml()
+    {
+        $this->parse(file_get_contents($this->dir.'yaml.md'))
+             ->getConfig()
+             ->shouldReturn($this->sample_header);
+        
+        $this->parse(file_get_contents($this->dir.'yaml.md'))
+             ->getContent()
+             ->shouldReturn($this->sample_content);
+    }
 
-        $this->parse(file_get_contents(__DIR__.'/../../resources/json.md'))->getConfig()->shouldReturn([
-            'layout' => 'custom',
-            'my_list' => [ 'one', 'two', 'three']
-        ]);
-        $this->parse(file_get_contents(__DIR__.'/../../resources/json.md'))->getContent()->shouldReturn(<<<EOF
-Main Title
------
-### Subtilte
-
-Lorem ipsum......
-EOF
-        );
+    function it_should_parse_json()
+    {
+        $this->parse(file_get_contents($this->dir.'json2.md'))
+             ->getConfig()
+             ->shouldReturn($this->sample_header);
+        
+        $this->parse(file_get_contents($this->dir.'json2.md'))
+             ->getContent()
+             ->shouldReturn($this->sample_content);
     }
 
     function it_should_dump_yaml(){
@@ -67,8 +77,8 @@ EOF
     }
 
     function it_should_validate_automatically(){
-        $this->isValid(file_get_contents(__DIR__.'/../../resources/yaml.md'))->shouldBeTrue();
-        $this->isValid(file_get_contents(__DIR__.'/../../resources/json.md'))->shouldBeTrue();
+        $this->isValid(file_get_contents($this->dir.'yaml.md'))->shouldBeTrue();
+        $this->isValid(file_get_contents($this->dir.'json.md'))->shouldBeTrue();
         $this->isValid('Lorem Ipsum')->shouldBeFalse();
     }
 
