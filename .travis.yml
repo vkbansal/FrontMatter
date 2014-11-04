@@ -13,3 +13,4 @@ install:
 
 script:
   - vendor/bin/phpspec run -v
+  - vendor/bin/phpunit -c phpunit.xml.dist
