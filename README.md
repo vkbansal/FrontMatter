@@ -99,7 +99,9 @@ Lorem ipsum......' (length=48)
 ```
 ####Dump
 ```php
-$document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
+<?php
+
+$document = new Document('<body>Hello</body>', ['title' => 'test', 'layout' => 'layout.html']);
 
 $dump = Parser::dump($document);
 
@@ -115,6 +117,7 @@ layout: layout.html
 ```
 ####Validation
 ```php
+<?php
 Parser::isValid('Lorem ipsum....'); //false
 Parser::isValid(<<<EOF
 ---
