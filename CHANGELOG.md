@@ -1,5 +1,9 @@
 #Chanelog
 
+##master
+- Changed how formats are parsed. see #9.
+- `json` format using `;;;` has been deprecated. `Parser::parse()` still will work.
+
 ##v1.1.1
 - Made methods chaninable
 
