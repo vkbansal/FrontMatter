@@ -13,14 +13,6 @@ use Symfony\Component\Yaml\Yaml;
 class Parser {
 
     /**
-     * Regex for YAML seperators
-     * @var string
-     * @since 1.0.0
-     * @deprecated  since 1.2.0
-     */
-    private static $yamlSeperator = "/^-{3}\r?\n(.*)\r?\n-{3}\r?\n/s";
-
-    /**
      * Regex for JSON seperators
      * @var string
      * @since 1.0.0
@@ -37,6 +29,7 @@ class Parser {
 
     const DUMP_YAML = 'yaml';
     const DUMP_JSON = 'json';
+    const DUMP_INI  = 'ini';
 
     /**
      * Parse the given content
@@ -80,7 +73,9 @@ class Parser {
 
             case 'json':
                 return "--- json\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n---\n".$document->getContent();
-            
+            case 'ini':
+                return "--- ini\n".self::dumpIni($document->getConfig())."---\n".$document->getContent();
+
             default:
                 return "---\n".Yaml::dump($document->getConfig())."---\n".$document->getContent();
         }
@@ -105,8 +100,38 @@ class Parser {
                 return Yaml::parse($header);
             case 'json':
                 return json_decode($header, true);
+            case 'ini':
+                return parse_ini_string($header, true);
             default:
                 return Yaml::parse($header);
         }
+    }
+
+
+    private static function dumpIni(array $config)
+    {
+        $sections = $globals = '';
+        
+        if(!empty($config)){
+            foreach ($config as $section => $item) {
+                if(!is_array($item)){
+                    //To write globals at top
+                    $globals .= "{$section} = {$item}\n";
+                } else {
+                    $sections = "\n[{$section}]\n";
+                    foreach ($item as $key => $value) {
+                        if(is_array($value)){
+                            foreach ($value as $arrKey => $arrValue) {
+                                $sections .= "{$key}[{$arrKey}] = $arrValue\n";
+                            }
+                        } else {
+                            $sections .= "{$key} = {$value}\n";
+                        }
+                    }
+                }
+
+            }
+        }
+        return $globals.$sections;
     }
 }

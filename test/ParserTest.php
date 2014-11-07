@@ -53,56 +53,48 @@ EOF;
         $this->assertSame( $this->sampleContent, $doc->getContent());
     }
 
+    public function testParseIni(){
+        $ini = file_get_contents(__DIR__.'/resources/ini.md');
+        
+        $doc = Parser::parse($ini);
+
+        $this->assertEquals($this->sampleHeader, $doc->getConfig());
+        $this->assertSame( $this->sampleContent, $doc->getContent());
+    }
     public function testDumpYaml()
     {
         $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
 
-        $dump_y = Parser::dump($document);
+        $dump = Parser::dump($document);
 
-        $this->assertSame(<<<EOF
----
-title: test
-layout: layout.html
----
-<body>Hello</body>
-EOF
-        , $dump_y);
+        $this->assertSame("---\ntitle: test\nlayout: layout.html\n---\n<body>Hello</body>", $dump);
     }
 
     public function testDumpJSON()
     {
         $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
 
-        $dump_j = Parser::dump($document, true);
+        $dump = Parser::dump($document, true);
 
-        $this->assertSame(<<<EOF
-;;;
-{
-    "title": "test",
-    "layout": "layout.html"
-}
-;;;
-<body>Hello</body>
-EOF
-        , $dump_j);
+        $this->assertSame(";;;\n{\n    \"title\": \"test\",\n    \"layout\": \"layout.html\"\n}\n;;;\n<body>Hello</body>", $dump);
     }
 
     public function testDumpJSON2()
     {
         $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
 
-        $dump_j = Parser::dump($document, Parser::DUMP_JSON);
+        $dump = Parser::dump($document, Parser::DUMP_JSON);
 
-        $this->assertSame(<<<EOF
---- json
-{
-    "title": "test",
-    "layout": "layout.html"
-}
----
-<body>Hello</body>
-EOF
-        , $dump_j);
+        $this->assertSame("--- json\n{\n    \"title\": \"test\",\n    \"layout\": \"layout.html\"\n}\n---\n<body>Hello</body>", $dump);
+    }
+
+    public function testDumpIni()
+    {
+        $document = new Document('<body>Hello</body>', array('title' => 'test', 'layout' => 'layout.html'));
+
+        $dump = Parser::dump($document, Parser::DUMP_INI);
+
+        $this->assertSame("--- ini\ntitle = test\nlayout = layout.html\n---\n<body>Hello</body>", $dump);
     }
 
     public function testIsValid(){
