@@ -4,7 +4,7 @@ namespace VKBansal\FrontMatter;
 /**
  * FrontMatter Document
  * @package VKBansal\FrontMatter\Document
- * @version 1.0.0
+ * @version 1.2.0
  * @author Vivek Kumar Bansal <contact@vkbansal.me>
  * @license MIT
  */
@@ -12,7 +12,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
 
     /**
      * Constants for Document::merge() behaviour
-     * @since 1.1.0
      */
     const MERGE_CONFIG = 0;
     const MERGE_CONTENT_REPLACE = 1;
@@ -22,7 +21,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
 
     /**
      * Constants for Document::inherit() behaviour
-     * @since 1.1.0
      */
     const INHERIT_CONFIG = 5;
     const INHERIT_CONTENT_REPLACE = 6;
@@ -33,14 +31,12 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * Content of the document 
      * @var string
-     * @since 1.0.0
      */
     private $content;
 
     /**
      * Config of the document
      * @var array
-     * @since 1.0.0
      */
     private $config;
 
@@ -48,7 +44,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Document Constructor
      * @param string $content content/body of the document
      * @param array  $config  config/header of the document
-     * @since 1.0.0
      */
     public function __construct($content = '', $config = []){
         $this->content = $content;
@@ -58,7 +53,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * @see "http://php.net/manual/en/language.oop5.magic.php#object.tostring"
      * @return string
-     * @since 1.0.0
      */
     public function __toString(){
         return $this->getContent();
@@ -68,7 +62,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
      * @return mixed
-     * @since 1.0.0
      */
     public function __get($name){
         return $this->config[$name];
@@ -76,7 +69,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
 
     /**
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
-     * @since 1.0.0
      */
     public function __set($name, $value){
         $this->config[$name] = $value;
@@ -85,7 +77,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
      * @return boolean
-     * @since 1.0.0
      */
     public function __isset($name){
         return isset($this->config[$name]);
@@ -93,7 +84,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
 
     /**
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
-     * @since 1.0.0
      */
     public function __unset($name){
         unset($this->config[$name]);
@@ -103,7 +93,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Whether or not an offset exists.
      * This method is executed when using isset() or empty() on objects implementing ArrayAccess.
      * @see "http://php.net/manual/en/arrayaccess.offsetexists.php"
-     * @since 1.0.0
      */
     public function offsetExists($offset){
         return isset($this->config[$offset]);
@@ -113,7 +102,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Returns the value at specified offset.
      * This method is executed when checking if offset is empty().
      * @see http://php.net/manual/en/arrayaccess.offsetget.php
-     * @since 1.0.0
      */
     public function offsetGet($offset){
         return $this->config[$offset];
@@ -122,7 +110,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * Assigns a value to the specified offset.
      * @see "http://php.net/manual/en/arrayaccess.offsetset.php"
-     * @since 1.0.0
      */
     public function offsetSet($offset, $value){
         $this->config[$offset] = $value;
@@ -131,7 +118,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * Unsets an offset.
      * @see "http://php.net/manual/en/arrayaccess.offsetunset.php"
-     * @since 1.0.0
      */
     public function offsetUnset($offset){
         unset($this->config[$offset]);
@@ -139,8 +125,7 @@ class Document implements \ArrayAccess, \IteratorAggregate{
 
     /**
      * @see "http://php.net/manual/en/class.iteratoraggregate.php"
-     * @return void
-     * @since 1.1.0
+     * @return \ArrayIterartor
      */
     public function getIterator(){
         return new \ArrayIterator($this->config);
@@ -150,7 +135,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Get header/config of the document
      * @param  mixed $varName  Name of the property to get
      * @return mixed           if name is specified, returns specific property else returns full config/header
-     * @since 1.0.0
      */
     public function getConfig($varName = null){
 
@@ -166,7 +150,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  mixed $property If an array is provided, header is replaced. If a string is provided, the poperty is replaced/set.
      * @param  mixed $value    Value of the property to set
      * @return $this
-     * @since 1.0.0
      */
     public function setConfig($property, $value = null){
 
@@ -181,7 +164,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
     /**
      * Get the content of the document
      * @return string Content of the document
-     * @since 1.0.0
      */
     public function getContent(){
         return $this->content;
@@ -191,7 +173,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Set the content of the document
      * @param string  $content Content of the document
      * @return $this
-     * @since 1.0.0
      */
     public function setContent($content){
         $this->content = $content;
@@ -203,7 +184,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  Document $parent Document to be inherited
      * @param  int      $mode   Inherit Mode
      * @return $this
-     * @since 1.1.0
      */
     public function inherit(Document $parent, $mode = self::INHERIT_CONFIG){
 
@@ -226,7 +206,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  Document $document Document to be merged in
      * @param  int      $mode     Merge mode
      * @return $this
-     * @since 1.1.0
      */
     public function merge(Document $document, $mode = self::MERGE_CONFIG){
 
@@ -250,7 +229,6 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  array $itemA Array to be merged in
      * @param  array $itemB Array to be merged
      * @return array        merged array
-     * @since 1.1.0
      */
     private function mergeRecursive($itemA, $itemB){
         

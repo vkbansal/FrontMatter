@@ -6,7 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * FrontMatter Parser
  * @package VKBansal\FrontMatter\Parser
- * @version 1.0.0
+ * @version 1.2.0
  * @author Vivek Kumar Bansal <contact@vkbansal.me>
  * @license MIT
  */
@@ -15,18 +15,20 @@ class Parser {
     /**
      * Regex for JSON seperators
      * @var string
-     * @since 1.0.0
-     * @deprecated  since 1.2.0
+     * @deprecated
      */
     private static $jsonSeperator = "/^;{3}\r?\n(.*)\r?\n;{3}\r?\n/s";
 
     /**
      * Regex for seperators
      * @var string
-     * @since 1.2.0
      */
     private static $matcherRegex = "/^-{3}\s?(\w*)\r?\n(.*)\r?\n-{3}\r?\n(.*)/s";
 
+    /**
+     * Constanst for Document::dump()
+     * @see Document::dump()
+     */
     const DUMP_YAML = 'yaml';
     const DUMP_JSON = 'json';
     const DUMP_INI  = 'ini';
@@ -34,8 +36,7 @@ class Parser {
     /**
      * Parse the given content
      * @param  string $input content to be parsed
-     * @return Document
-     * @since 1.0.0
+     * @return VKBansal\FrontMatter\Document
      */
     public static function parse($input){
         
@@ -58,7 +59,6 @@ class Parser {
      * Convert a Document to string
      * @param  Document $document
      * @return string
-     * @since 1.0.0
      */
     public static function dump (Document $document, $mode = self::DUMP_YAML)
     {
@@ -84,8 +84,7 @@ class Parser {
     /**
      * Determines if given content is valid 
      * @param  string  $input  Input to be validated
-     * @return boolean         True if valid else false
-     * @since 1.1.0 
+     * @return boolean         True if valid else false 
      */
     public static function isValid($input){
 
@@ -93,6 +92,12 @@ class Parser {
 
     }
 
+    /**
+     * Parses header
+     * @param  string $header
+     * @param  string $parser
+     * @return array|string
+     */
     private static function parseHeader($header, $parser)
     {
         switch($parser){
@@ -107,7 +112,11 @@ class Parser {
         }
     }
 
-
+    /**
+     * Encodes PHP array to ini string
+     * @param  array  $config
+     * @return string
+     */
     private static function dumpIni(array $config)
     {
         $sections = $globals = '';
