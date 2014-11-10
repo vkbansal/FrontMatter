@@ -39,8 +39,6 @@ class Parser {
      * @return Document
      */
     public static function parse($input){
-        
-        $content = $header = null;
 
         if(preg_match(self::$matcherRegex, $input, $matches)){
             $header = self::parseHeader($matches[2], strtolower($matches[1]));
@@ -50,6 +48,7 @@ class Parser {
             $header = json_decode($matches[1], true);
         } else {
             $content = $input;
+            $header = [];
         }
 
         return new Document($content, $header);
