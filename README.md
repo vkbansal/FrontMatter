@@ -14,7 +14,7 @@ Create or update your composer.json and run `composer update`
 ```json
 {
     "require": {
-        "vkbansal/frontmatter": "~1.1.0"
+        "vkbansal/frontmatter": "~1.2.0"
     }
 }
 ```
@@ -22,7 +22,7 @@ Create or update your composer.json and run `composer update`
 
 - YAML
 - JSON
-- INI (coming soon)
+- INI
 
 ##Usage
 ###Parse
@@ -107,7 +107,7 @@ Lorem ipsum......
 EOF
 ); //true
 ```
-For more detailed usage see [wiki](./wiki)
+For more detailed usage see [wiki](https://github.com/vkbansal/FrontMatter/wiki)
 
 ##License
 [MIT](LICENSE.md)
