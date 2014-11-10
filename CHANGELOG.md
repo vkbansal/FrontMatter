@@ -1,8 +1,10 @@
 #Chanelog
 
-##master
+##v1.2.0
 - Changed how formats are parsed. see [#9](./issues/9).
-- `json` format using `;;;` has been deprecated. `Parser::parse()` and `Parser::dump($document, true)` will still work. **Will be Removed in v1.3**
+- `json` format using `;;;` has been deprecated. `Parser::parse()` and `Parser::dump($document, true)` will still work. **Will be Removed in v1.3**.
+- Added `ini` support.
+- `Parser::dump()` signature updated.
 
 ##v1.1.1
 - Made methods chaninable
