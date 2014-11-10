@@ -125,7 +125,7 @@ class Document implements \ArrayAccess, \IteratorAggregate{
 
     /**
      * @see "http://php.net/manual/en/class.iteratoraggregate.php"
-     * @return \ArrayIterartor
+     * @return \ArrayIterator
      */
     public function getIterator(){
         return new \ArrayIterator($this->config);
