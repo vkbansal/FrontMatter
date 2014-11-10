@@ -36,7 +36,7 @@ class Parser {
     /**
      * Parse the given content
      * @param  string $input content to be parsed
-     * @return VKBansal\FrontMatter\Document
+     * @return Document
      */
     public static function parse($input){
         
