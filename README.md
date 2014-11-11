@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vkbansal/FrontMatter.svg?branch=master)](https://travis-ci.org/vkbansal/FrontMatter)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/vkbansal/frontmatter/v/stable.svg)](https://packagist.org/packages/vkbansal/frontmatter)
 [![License](https://poser.pugx.org/vkbansal/frontmatter/license.svg)](https://packagist.org/packages/vkbansal/frontmatter)
 #FrontMatter
