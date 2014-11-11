@@ -59,7 +59,7 @@ class Parser
      * @param  Document $document
      * @return string
      */
-    public static function dump (Document $document, $mode = self::DUMP_YAML)
+    public static function dump (Document $document, $mode = null)
     {
         //Deprecated
         if ($mode === true) {
@@ -68,7 +68,7 @@ class Parser
 
         switch ($mode) {
             case 'yaml':
-                return "---\n".Yaml::dump($document->getConfig())."---\n".$document->getContent();
+                return "--- yaml\n".Yaml::dump($document->getConfig())."---\n".$document->getContent();
 
             case 'json':
                 return "--- json\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n---\n".$document->getContent();

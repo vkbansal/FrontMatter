@@ -1,9 +1,12 @@
 --- ini
-layout = custom
-[my_list] 
-0 = one 
-1 = two
-2 = three
+host = http://example.com
+port = 25
+
+[user]
+name[first] = John
+name[last] = Doe
+id = johndoe@example.com
+password = mypassword
 ---
 Main Title
 -----
