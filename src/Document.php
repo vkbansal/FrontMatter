@@ -8,8 +8,8 @@ namespace VKBansal\FrontMatter;
  * @author Vivek Kumar Bansal <contact@vkbansal.me>
  * @license MIT
  */
-class Document implements \ArrayAccess, \IteratorAggregate{
-
+class Document implements \ArrayAccess, \IteratorAggregate
+{
     /**
      * Constants for Document::merge() behaviour
      */
@@ -45,7 +45,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param string $content content/body of the document
      * @param array  $config  config/header of the document
      */
-    public function __construct($content = '', $config = []){
+    public function __construct($content = '', $config = [])
+    {
         $this->content = $content;
         $this->config = $config;
     }
@@ -54,7 +55,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @see "http://php.net/manual/en/language.oop5.magic.php#object.tostring"
      * @return string
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->getContent();
     }
 
@@ -63,14 +65,16 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
      * @return mixed
      */
-    public function __get($name){
+    public function __get($name)
+    {
         return $this->config[$name];
     }
 
     /**
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
      */
-    public function __set($name, $value){
+    public function __set($name, $value)
+    {
         $this->config[$name] = $value;
     }
 
@@ -78,14 +82,16 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
      * @return boolean
      */
-    public function __isset($name){
+    public function __isset($name)
+    {
         return isset($this->config[$name]);
     }
 
     /**
      * @see "http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members"
      */
-    public function __unset($name){
+    public function __unset($name)
+    {
         unset($this->config[$name]);
     }
 
@@ -94,7 +100,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * This method is executed when using isset() or empty() on objects implementing ArrayAccess.
      * @see "http://php.net/manual/en/arrayaccess.offsetexists.php"
      */
-    public function offsetExists($offset){
+    public function offsetExists($offset)
+    {
         return isset($this->config[$offset]);
     }
 
@@ -103,7 +110,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * This method is executed when checking if offset is empty().
      * @see http://php.net/manual/en/arrayaccess.offsetget.php
      */
-    public function offsetGet($offset){
+    public function offsetGet($offset)
+    {
         return $this->config[$offset];
     }
 
@@ -111,7 +119,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Assigns a value to the specified offset.
      * @see "http://php.net/manual/en/arrayaccess.offsetset.php"
      */
-    public function offsetSet($offset, $value){
+    public function offsetSet($offset, $value)
+    {
         $this->config[$offset] = $value;
     }
 
@@ -119,7 +128,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Unsets an offset.
      * @see "http://php.net/manual/en/arrayaccess.offsetunset.php"
      */
-    public function offsetUnset($offset){
+    public function offsetUnset($offset)
+    {
         unset($this->config[$offset]);
     }
 
@@ -127,7 +137,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @see "http://php.net/manual/en/class.iteratoraggregate.php"
      * @return \ArrayIterator
      */
-    public function getIterator(){
+    public function getIterator()
+    {
         return new \ArrayIterator($this->config);
     }
     
@@ -136,12 +147,11 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  mixed $varName  Name of the property to get
      * @return mixed           if name is specified, returns specific property else returns full config/header
      */
-    public function getConfig($varName = null){
-
-        if($varName !== null && array_key_exists($varName, $this->config)){
+    public function getConfig($varName = null)
+    {
+        if ($varName !== null && array_key_exists($varName, $this->config)) {
             return $this->config[$varName];
         }
-
         return $this->config;
     }
 
@@ -151,11 +161,11 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  mixed $value    Value of the property to set
      * @return $this
      */
-    public function setConfig($property, $value = null){
-
-        if(is_array($property)){
+    public function setConfig($property, $value = null)
+    {
+        if (is_array($property)) {
             $this->config = $property;
-        } elseif (is_string($property)){
+        } elseif (is_string($property)) {
             $this->config[$property] = $value;
         }
         return $this;
@@ -165,7 +175,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * Get the content of the document
      * @return string Content of the document
      */
-    public function getContent(){
+    public function getContent()
+    {
         return $this->content;
     }
 
@@ -174,7 +185,8 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param string  $content Content of the document
      * @return $this
      */
-    public function setContent($content){
+    public function setContent($content)
+    {
         $this->content = $content;
         return $this;
     }
@@ -185,17 +197,17 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  int      $mode   Inherit Mode
      * @return $this
      */
-    public function inherit(Document $parent, $mode = self::INHERIT_CONFIG){
-
-        if(in_array($mode, [self::INHERIT_CONFIG, self::INHERIT_ALL_APPEND, self::INHERIT_ALL_REPLACE])){
+    public function inherit(Document $parent, $mode = self::INHERIT_CONFIG)
+    {
+        if (in_array($mode, [self::INHERIT_CONFIG, self::INHERIT_ALL_APPEND, self::INHERIT_ALL_REPLACE])) {
             $this->config = $this->mergeRecursive($parent->getConfig(), $this->config);
         }
 
-        if(in_array($mode, [self::INHERIT_ALL_REPLACE, self::INHERIT_CONTENT_REPLACE])){
+        if (in_array($mode, [self::INHERIT_ALL_REPLACE, self::INHERIT_CONTENT_REPLACE])) {
             $this->content = $parent->getContent();
         }
 
-        if(in_array($mode, [self::INHERIT_ALL_APPEND, self::INHERIT_CONTENT_APPEND])){
+        if (in_array($mode, [self::INHERIT_ALL_APPEND, self::INHERIT_CONTENT_APPEND])) {
             $this->content = $parent->getContent().$this->content;
         }
         return $this;
@@ -207,20 +219,19 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  int      $mode     Merge mode
      * @return $this
      */
-    public function merge(Document $document, $mode = self::MERGE_CONFIG){
-
-        if(in_array($mode, [self::MERGE_CONFIG, self::MERGE_ALL_APPEND, self::MERGE_ALL_REPLACE])){
+    public function merge(Document $document, $mode = self::MERGE_CONFIG)
+    {
+        if (in_array($mode, [self::MERGE_CONFIG, self::MERGE_ALL_APPEND, self::MERGE_ALL_REPLACE])) {
             $this->config = $this->mergeRecursive($this->config, $document->getConfig());
         }
 
-        if(in_array($mode, [self::MERGE_ALL_REPLACE, self::MERGE_CONTENT_REPLACE])){
+        if (in_array($mode, [self::MERGE_ALL_REPLACE, self::MERGE_CONTENT_REPLACE])) {
             $this->content = $document->getContent();
         }
 
-        if(in_array($mode, [self::MERGE_ALL_APPEND, self::MERGE_CONTENT_APPEND])){
+        if (in_array($mode, [self::MERGE_ALL_APPEND, self::MERGE_CONTENT_APPEND])) {
             $this->content .= $document->getContent();
         }
-
         return $this;
     }
 
@@ -230,19 +241,17 @@ class Document implements \ArrayAccess, \IteratorAggregate{
      * @param  array $itemB Array to be merged
      * @return array        merged array
      */
-    private function mergeRecursive($itemA, $itemB){
-        
+    private function mergeRecursive($itemA, $itemB)
+    {
         foreach ($itemB as $key => $value) {
-            if(is_integer($key)){
+            if (is_integer($key)) {
                 $itemA[] = $value;
-            } elseif (array_key_exists($key, $itemA) && is_array($itemA[$key]) && is_array($value)){
+            } elseif (array_key_exists($key, $itemA) && is_array($itemA[$key]) && is_array($value)) {
                 $itemA[$key] = $this->mergeRecursive($itemA[$key], $value);
-            }
-            else{
+            } else {
                 $itemA[$key] = $value;
             }
         }
-
         return $itemA;
     }
 }

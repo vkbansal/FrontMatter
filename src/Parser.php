@@ -10,7 +10,8 @@ use Symfony\Component\Yaml\Yaml;
  * @author Vivek Kumar Bansal <contact@vkbansal.me>
  * @license MIT
  */
-class Parser {
+class Parser
+{
 
     /**
      * Regex for JSON seperators
@@ -38,19 +39,18 @@ class Parser {
      * @param  string $input content to be parsed
      * @return Document
      */
-    public static function parse($input){
-
-        if(preg_match(self::$matcherRegex, $input, $matches)){
+    public static function parse($input)
+    {
+        if (preg_match(self::$matcherRegex, $input, $matches)) {
             $header = self::parseHeader($matches[2], strtolower($matches[1]));
             $content = $matches[3];
-        } elseif (preg_match( self::$jsonSeperator, $input, $matches)) {   
+        } elseif (preg_match(self::$jsonSeperator, $input, $matches)) {
             $content = substr($input, strlen($matches[0]));
             $header = json_decode($matches[1], true);
         } else {
             $content = $input;
             $header = [];
         }
-
         return new Document($content, $header);
     }
 
@@ -62,7 +62,7 @@ class Parser {
     public static function dump (Document $document, $mode = self::DUMP_YAML)
     {
         //Deprecated
-        if($mode === true){
+        if ($mode === true) {
             return ";;;\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n;;;\n".$document->getContent();
         }
 
@@ -85,8 +85,8 @@ class Parser {
      * @param  string  $input  Input to be validated
      * @return boolean         True if valid else false 
      */
-    public static function isValid($input){
-
+    public static function isValid($input)
+    {
         return (preg_match(self::$matcherRegex, $input) === 1) || (preg_match(self::$jsonSeperator, $input) === 1);
 
     }
@@ -120,15 +120,15 @@ class Parser {
     {
         $sections = $globals = '';
         
-        if(!empty($config)){
+        if (!empty($config)) {
             foreach ($config as $section => $item) {
-                if(!is_array($item)){
+                if (!is_array($item)) {
                     //To write globals at top
                     $globals .= "{$section} = {$item}\n";
                 } else {
                     $sections = "\n[{$section}]\n";
                     foreach ($item as $key => $value) {
-                        if(is_array($value)){
+                        if (is_array($value)) {
                             foreach ($value as $arrKey => $arrValue) {
                                 $sections .= "{$key}[{$arrKey}] = $arrValue\n";
                             }
@@ -137,7 +137,6 @@ class Parser {
                         }
                     }
                 }
-
             }
         }
         return $globals.$sections;
