@@ -4,7 +4,7 @@ namespace VKBansal\FrontMatter;
 /**
  * FrontMatter Document
  * @package VKBansal\FrontMatter\Document
- * @version 1.2.0
+ * @version 1.3.0
  * @author Vivek Kumar Bansal <contact@vkbansal.me>
  * @license MIT
  */

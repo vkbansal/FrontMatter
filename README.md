@@ -16,7 +16,7 @@ Create or update your composer.json and run `composer update`
 ```json
 {
     "require": {
-        "vkbansal/frontmatter": "~1.2.0"
+        "vkbansal/frontmatter": "~1.3.0"
     }
 }
 ```

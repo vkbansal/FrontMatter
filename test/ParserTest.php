@@ -62,21 +62,6 @@ class ParserTest extends PHPUnit_Framework_TestCase{
         $this->assertEquals($json, Parser::dump($doc, Parser::DUMP_JSON));
     }
 
-
-    public function testJsonDeprecated()
-    {
-        $json = file_get_contents(__DIR__.'/resources/json2.md');
-        
-        $doc = Parser::parse($json);
-
-        $this->assertEquals($this->sampleHeader, $doc->getConfig());
-        $this->assertSame( $this->sampleContent, $doc->getContent());
-
-        $doc = new Document($this->sampleContent, $this->sampleHeader);
-
-        $this->assertEquals($json, Parser::dump($doc, true));
-    }
-
     public function testIni()
     {
         $ini = file_get_contents(__DIR__.'/resources/ini.md');

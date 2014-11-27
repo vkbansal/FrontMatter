@@ -58,14 +58,6 @@ class ParserSpec extends ObjectBehavior
         $this->dump($this->document, 'json')->shouldReturn($json);
    }
 
-    function it_should_parse_json_deprecated()
-    {   
-        $json = file_get_contents($this->dir.'json2.md');
-        $this->parse($json)->getConfig()->shouldReturn($this->sample_header);
-        $this->parse($json)->getContent()->shouldReturn($this->sample_content);
-        $this->dump($this->document, true)->shouldReturn($json);
-   }
-
     function it_should_parse_ini()
     {   
         $ini = file_get_contents($this->dir.'ini.md');

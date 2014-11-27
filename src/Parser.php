@@ -6,20 +6,12 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * FrontMatter Parser
  * @package VKBansal\FrontMatter\Parser
- * @version 1.2.0
+ * @version 1.3.0
  * @author Vivek Kumar Bansal <contact@vkbansal.me>
  * @license MIT
  */
 class Parser
 {
-
-    /**
-     * Regex for JSON seperators
-     * @var string
-     * @deprecated
-     */
-    private static $jsonSeperator = "/^;{3}\r?\n(.*)\r?\n;{3}\r?\n/s";
-
     /**
      * Regex for seperators
      * @var string
@@ -44,13 +36,11 @@ class Parser
         if (preg_match(self::$matcherRegex, $input, $matches)) {
             $header = self::parseHeader($matches[2], strtolower($matches[1]));
             $content = $matches[3];
-        } elseif (preg_match(self::$jsonSeperator, $input, $matches)) {
-            $content = substr($input, strlen($matches[0]));
-            $header = json_decode($matches[1], true);
         } else {
             $content = $input;
             $header = [];
         }
+
         return new Document($content, $header);
     }
 
@@ -61,17 +51,13 @@ class Parser
      */
     public static function dump (Document $document, $mode = null)
     {
-        //Deprecated
-        if ($mode === true) {
-            return ";;;\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n;;;\n".$document->getContent();
-        }
-
         switch ($mode) {
             case 'yaml':
                 return "--- yaml\n".Yaml::dump($document->getConfig())."---\n".$document->getContent();
-
+            
             case 'json':
                 return "--- json\n".json_encode($document->getConfig(), JSON_PRETTY_PRINT)."\n---\n".$document->getContent();
+            
             case 'ini':
                 return "--- ini\n".self::dumpIni($document->getConfig())."---\n".$document->getContent();
 
@@ -87,7 +73,7 @@ class Parser
      */
     public static function isValid($input)
     {
-        return (preg_match(self::$matcherRegex, $input) === 1) || (preg_match(self::$jsonSeperator, $input) === 1);
+        return preg_match(self::$matcherRegex, $input) === 1;
 
     }
 
