@@ -3,6 +3,8 @@ var path = require('path'),
     phpunit = require('gulp-phpunit'),
     phpspec = require('gulp-phpspec'),
     notify = require('gulp-notify'),
+    version = require('./package.json').version,
+    replace = require('gulp-replace'),
     test = null,
     notice = {
         phpspec:{
@@ -61,6 +63,13 @@ gulp.task('phpunit', function(){
         .pipe(phpunit('', {notify: true, debug:true}))
         .on('error', handleErrors)
         .pipe(notify(notifyText(test, 'pass')));
+});
+
+gulp.task('bump', function(){
+    return gulp.src(['src/**/*.php'])
+        .pipe(replace(/(\s?\*\s+?@version\s+?)(\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b)/img, "$1"+version))
+        .pipe(gulp.dest('./src/'));
+
 });
 
 gulp.task('test', ['phpspec', 'phpunit']);
