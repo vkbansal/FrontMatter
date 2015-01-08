@@ -1,5 +1,13 @@
 #Chanelog
 
+##v1.3.1
+- Updated dependencies
+    - `symfony/yaml` => '2.6.*'
+
+- Updated dev dependencies
+    - `phpunit/phpunit` => '4.4.*'
+    - `phpspec/phpspec` => '2.1.*'
+
 ##v1.3.0
 - Removed deprecated features.
 
