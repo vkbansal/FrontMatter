@@ -1,10 +1,11 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8723ff04-60ac-43b2-b432-18fae0829979/big.png)](https://insight.sensiolabs.com/projects/8723ff04-60ac-43b2-b432-18fae0829979)
+[![Latest Stable Version](https://img.shields.io/packagist/v/vkbansal/FrontMatter.svg?style=flat-square)](https://packagist.org/packages/vkbansal/frontmatter)
+[![Build Status](https://img.shields.io/travis/vkbansal/FrontMatter.svg?style=flat-square)](https://travis-ci.org/vkbansal/FrontMatter)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/vkbansal/FrontMatter.svg?style=flat-square)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/vkbansal/FrontMatter.svg?style=flat-square)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
+[![Code Climate](https://img.shields.io/codeclimate/github/vkbansal/FrontMatter.svg?style=flat-square)](https://codeclimate.com/github/vkbansal/FrontMatter)
+[![License](https://img.shields.io/badge/Licence-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/vkbansal/frontmatter)
 
-[![Build Status](https://travis-ci.org/vkbansal/FrontMatter.svg?branch=master)](https://travis-ci.org/vkbansal/FrontMatter)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/vkbansal/frontmatter/v/stable.svg)](https://packagist.org/packages/vkbansal/frontmatter)
-[![License](https://poser.pugx.org/vkbansal/frontmatter/license.svg)](https://packagist.org/packages/vkbansal/frontmatter)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8723ff04-60ac-43b2-b432-18fae0829979/big.png)](https://insight.sensiolabs.com/projects/8723ff04-60ac-43b2-b432-18fae0829979)
 #FrontMatter
 Frontmatter allows page-specific variables to be included at the top of a template using the YAML or JSON format.
 
