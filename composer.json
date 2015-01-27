@@ -1,0 +1,23 @@
+{
+    "name": "vkbansal/frontmatter",
+    "description": "Frontmatter allows page-specific variables to be included at the top of a template using the YAML or JSON format.",
+    "keywords": ["yaml", "front-matter", "parser", "frontmatter", "json", "front", "matter"],
+    "homepage": "https://github.com/vkbansal/FrontMatter",
+    "authors": [
+        {
+            "name": "Vivek Kumar Bansal",
+            "email": "contact@vkbansal.me",
+            "homepage": "http://vkbansal.me",
+            "role": "Developer"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php" : ">=5.4.0",
+        "league/flysystem" : "~1.0.0",
+        "symfony/yaml": "~2.6.0",
+        "twig/twig": "1.16.*",
+        "erusev/parsedown-extra": "*",
+        "league/climate": "~2.6.0"
+    }
+}

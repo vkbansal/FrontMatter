@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FrontMatter</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700 | Roboto+Slab' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" id="theme-tomorrow" href="/assets/css/prism-tomorrow.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-primary" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">FrontMatter <small>Page-specific variables at the top of a template</small></a>
+        </div>
+    </nav>
+    <div class="body-wrapper">
+        <nav class="navmenu navmenu-default sidebar" role="navigation">
+                            <h2 class="navmenu-section">Getting Started</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/">Introduction</a></li>
+                                    <li><a href="/basic-usage/">Basic Usage</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Parser</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/parser/formats/">Formats</a></li>
+                                    <li><a href="/parser/parse/">Parse</a></li>
+                                    <li><a href="/parser/dump/">Dump</a></li>
+                                    <li><a href="/parser/validate/">Validate</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Document</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/document/">Constructor</a></li>
+                                    <li><a href="/document/config">Config</a></li>
+                                    <li><a href="/document/content">Content</a></li>
+                                    <li><a href="/document/merge">Merge</a></li>
+                                    <li><a href="/document/inherit">Inherit</a></li>
+                                    <li><a href="/document/accessors">Accessors</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Misc</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/changelog/">Changelog</a></li>
+                                    <li><a href="/upgrading-from-v1-1/">Uprading From v1.1</a></li>
+                                </ul>
+                    </nav>
+        <div class="main-body">
+               <h1>Config</h1>
+<h2>Get Config</h2>
+<p>Returns config value(s).</p>
+<p><strong>Description</strong></p>
+<pre><code class="language-php">mixed Document::getConfig([string $varName]);</code></pre>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><code>$varName</code>: Name of the config value to be retrieved (optional).</li>
+</ul>
+<p><strong>Return Values</strong></p>
+<ul>
+<li>If no argument is provided, it'll return entire config.</li>
+<li>If an agrument is provided, it'll return corresponding value.</li>
+</ul>
+<p><strong>Usage</strong></p>
+<pre><code class="language-php">$document-&gt;getConfig('title'); //'title'
+$document-&gt;getConfig(); //['title' =&gt; 'test', 'layout' =&gt; 'layout.html']</code></pre>
+<h2>Set Config</h2>
+<p>This method sets config value(s).</p>
+<p><strong>Description</strong></p>
+<pre><code class="language-php">$this Document::setConfig(mixed $prop [, mixed $value])</code></pre>
+<p><strong>parameters</strong></p>
+<ul>
+<li><code>$prop</code>: If an (associative) <code>array</code> is provided, entire config will be overwritten. If a <code>string</code> is provided, second argument will be its value.</li>
+<li><code>value</code>: Value to be assigned to <code>$prop</code>. Only applicable if <code>$prop</code> is string. Default value is <code>null</code></li>
+</ul>
+<p><strong>Return Value</strong></p>
+<ul>
+<li>Current instance of document (<code>$this</code>). Makes Method Chainable.</li>
+</ul>
+<p><strong>Usage</strong></p>
+<pre><code class="language-php">$document-&gt;setConfig('title', 'Another Title');
+$document-&gt;getConfig(); //['title' =&gt; 'Another Title', 'layout' =&gt; 'layout.html']
+
+$document-&gt;setConfig(['title'=&gt; 'Random Title', 'category' =&gt; 'yet another category']);
+$document-&gt;getConfig();//['title'=&gt; 'Random Title', 'category' =&gt; 'yet another category']</code></pre>
+        </div>
+    </div>
+        <script src="/assets/js/prism.js"></script>
+    
+</body>
+</html>

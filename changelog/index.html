@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FrontMatter</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700 | Roboto+Slab' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" id="theme-tomorrow" href="/assets/css/prism-tomorrow.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-primary" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">FrontMatter <small>Page-specific variables at the top of a template</small></a>
+        </div>
+    </nav>
+    <div class="body-wrapper">
+        <nav class="navmenu navmenu-default sidebar" role="navigation">
+                            <h2 class="navmenu-section">Getting Started</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/">Introduction</a></li>
+                                    <li><a href="/basic-usage/">Basic Usage</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Parser</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/parser/formats/">Formats</a></li>
+                                    <li><a href="/parser/parse/">Parse</a></li>
+                                    <li><a href="/parser/dump/">Dump</a></li>
+                                    <li><a href="/parser/validate/">Validate</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Document</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/document/">Constructor</a></li>
+                                    <li><a href="/document/config">Config</a></li>
+                                    <li><a href="/document/content">Content</a></li>
+                                    <li><a href="/document/merge">Merge</a></li>
+                                    <li><a href="/document/inherit">Inherit</a></li>
+                                    <li><a href="/document/accessors">Accessors</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Misc</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/changelog/">Changelog</a></li>
+                                    <li><a href="/upgrading-from-v1-1/">Uprading From v1.1</a></li>
+                                </ul>
+                    </nav>
+        <div class="main-body">
+               <h1>Chanelog</h1>
+<h2>v1.3.1</h2>
+<ul>
+<li>
+<p>Updated dependencies</p>
+<ul>
+<li><code>symfony/yaml</code> =&gt; '2.6.*'</li>
+</ul>
+</li>
+<li>Updated dev dependencies
+<ul>
+<li><code>phpunit/phpunit</code> =&gt; '4.4.*'</li>
+<li><code>phpspec/phpspec</code> =&gt; '2.1.*'</li>
+</ul></li>
+</ul>
+<h2>v1.3.0</h2>
+<ul>
+<li>Removed deprecated features.</li>
+</ul>
+<h2>v1.2.0</h2>
+<ul>
+<li>Changed how formats are parsed. see <a href="./issues/9">#9</a>.</li>
+<li><code>json</code> format using <code>;;;</code> has been deprecated. <code>Parser::parse()</code> and <code>Parser::dump($document, true)</code> will still work. <strong>Will be Removed in v1.3</strong>.</li>
+<li>Added <code>ini</code> support.</li>
+<li><code>Parser::dump()</code> signature updated.</li>
+</ul>
+<h2>v1.1.1</h2>
+<ul>
+<li>Made methods chaninable</li>
+</ul>
+<h2>v1.1.0</h2>
+<ul>
+<li>Added <code>Parser::isValid()</code></li>
+<li>Added <code>Document::merge()</code></li>
+<li>Added <code>Document::inherit()</code></li>
+</ul>
+<h2>v1.0.0</h2>
+<ul>
+<li>Header/Config can now also be accessed via properties</li>
+</ul>
+<h2>v0.1.1</h2>
+<ul>
+<li>Updated <code>symfony/yaml</code> requirement</li>
+</ul>
+<h2>v0.1.0</h2>
+<ul>
+<li>Initial release</li>
+</ul>
+        </div>
+    </div>
+        <script src="/assets/js/prism.js"></script>
+    
+</body>
+</html>

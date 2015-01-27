@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ data.project.title }}</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700 | Roboto+Slab' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" id="theme-tomorrow" href="{{ data.project.base }}/assets/css/prism-tomorrow.css">
+    <link rel="stylesheet" href="{{ data.project.base }}/assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-primary" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">{{ data.project.title }} <small>{{ data.project.tagline }}</small></a>
+        </div>
+    </nav>
+    <div class="body-wrapper">
+        <nav class="navmenu navmenu-default sidebar" role="navigation">
+            {% for section,links in data.menu %}
+                <h2 class="navmenu-section">{{section}}</h2>
+                <ul class="nav navmenu-nav">
+                {% for name,link in links %}
+                    <li><a href="{{ data.project.base }}{{link}}">{{name}}</a></li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        </nav>
+        <div class="main-body">
+           {% block content %}{% endblock %}
+        </div>
+    </div>
+    {# <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> #}
+    <script src="{{base}}/assets/js/prism.js"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>

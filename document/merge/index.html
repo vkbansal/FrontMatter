@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FrontMatter</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700 | Roboto+Slab' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" id="theme-tomorrow" href="/assets/css/prism-tomorrow.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-primary" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">FrontMatter <small>Page-specific variables at the top of a template</small></a>
+        </div>
+    </nav>
+    <div class="body-wrapper">
+        <nav class="navmenu navmenu-default sidebar" role="navigation">
+                            <h2 class="navmenu-section">Getting Started</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/">Introduction</a></li>
+                                    <li><a href="/basic-usage/">Basic Usage</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Parser</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/parser/formats/">Formats</a></li>
+                                    <li><a href="/parser/parse/">Parse</a></li>
+                                    <li><a href="/parser/dump/">Dump</a></li>
+                                    <li><a href="/parser/validate/">Validate</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Document</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/document/">Constructor</a></li>
+                                    <li><a href="/document/config">Config</a></li>
+                                    <li><a href="/document/content">Content</a></li>
+                                    <li><a href="/document/merge">Merge</a></li>
+                                    <li><a href="/document/inherit">Inherit</a></li>
+                                    <li><a href="/document/accessors">Accessors</a></li>
+                                </ul>
+                            <h2 class="navmenu-section">Misc</h2>
+                <ul class="nav navmenu-nav">
+                                    <li><a href="/changelog/">Changelog</a></li>
+                                    <li><a href="/upgrading-from-v1-1/">Uprading From v1.1</a></li>
+                                </ul>
+                    </nav>
+        <div class="main-body">
+               <h1>Merge</h1>
+<p>Merge other document into current document.</p>
+<h2>Description</h2>
+<pre><code class="language-php">$this Document::merge(Document $newDoc [, int $mode = Document::MERGE_CONFIG])</code></pre>
+<h2>Parameters</h2>
+<ul>
+<li><code>$newDoc</code> : The document to be merged in.</li>
+<li><code>$mode</code>: Mode to be used while merging. Default mode <code>Document::MERGE_CONFIG</code></li>
+</ul>
+<h2>Modes</h2>
+<table>
+<thead>
+<tr>
+<th>Mode Constant</th>
+<th>Mode Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MERGE_CONFIG</td>
+<td>Merge only config.</td>
+</tr>
+<tr>
+<td>MERGE_CONTENT_REPLACE</td>
+<td>Merge only content. Replaces current content with that from merging document</td>
+</tr>
+<tr>
+<td>MERGE_CONTENT_APPEND</td>
+<td>Merge only content. Appends content from merging document to current one.</td>
+</tr>
+<tr>
+<td>MERGE_ALL_REPLACE</td>
+<td>Merge both config and content. Same as <code>MERGE_CONTENT_REPLACE</code>.</td>
+</tr>
+<tr>
+<td>MERGE_ALL_APPEND</td>
+<td>Merge both config and content. Same as <code>MERGE_CONTENT_APPEND</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2>Return Value</h2>
+<ul>
+<li>Current instance of document (<code>$this</code>). Makes Method Chainable.</li>
+</ul>
+<h2>Usage</h2>
+<pre><code class="language-php">$document = new Document('Lorem Ipsum dol sidur.....', ['title'=&gt; 'Not A Random Title', 'layout' =&gt; 'grid']);
+$newDoc = new Document('Lorem Ipsum.....', ['title'=&gt; 'Random Title', 'category' =&gt; 'just another category']);
+
+$document-&gt;merge($newDoc);
+
+$document-&gt;getConfig();
+//['title'=&gt; 'Random Title', 'layout'=&gt; 'grid', 'category' =&gt; 'just another category']</code></pre>
+        </div>
+    </div>
+        <script src="/assets/js/prism.js"></script>
+    
+</body>
+</html>

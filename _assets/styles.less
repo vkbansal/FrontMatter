@@ -1,0 +1,390 @@
+// Core variables and mixins
+@import "../bower_components/bootstrap/less/variables.less";
+@import "../bower_components/bootstrap/less/mixins.less";
+
+// Reset and dependencies
+@import "../bower_components/bootstrap/less/normalize.less";
+@import "../bower_components/bootstrap/less/print.less";
+//@import "../bower_components/bootstrap/less/glyphicons.less";
+
+// Core CSS
+@import "../bower_components/bootstrap/less/scaffolding.less";
+@import "../bower_components/bootstrap/less/type.less";
+@import "../bower_components/bootstrap/less/code.less";
+@import "../bower_components/bootstrap/less/grid.less";
+//@import "../bower_components/bootstrap/less/tables.less";
+@import "../bower_components/bootstrap/less/forms.less";
+@import "../bower_components/bootstrap/less/buttons.less";
+
+// Components
+@import "../bower_components/bootstrap/less/component-animations.less";
+@import "../bower_components/bootstrap/less/dropdowns.less";
+// @import "../bower_components/bootstrap/less/button-groups.less";
+// @import "../bower_components/bootstrap/less/input-groups.less";
+@import "../bower_components/bootstrap/less/navs.less";
+@import "../bower_components/bootstrap/less/navbar.less";
+// @import "../bower_components/bootstrap/less/breadcrumbs.less";
+// @import "../bower_components/bootstrap/less/pagination.less";
+// @import "../bower_components/bootstrap/less/pager.less";
+// @import "../bower_components/bootstrap/less/labels.less";
+// @import "../bower_components/bootstrap/less/badges.less";
+@import "../bower_components/bootstrap/less/jumbotron.less";
+// @import "../bower_components/bootstrap/less/thumbnails.less";
+// @import "../bower_components/bootstrap/less/alerts.less";
+// @import "../bower_components/bootstrap/less/progress-bars.less";
+// @import "../bower_components/bootstrap/less/media.less";
+@import "../bower_components/bootstrap/less/list-group.less";
+// @import "../bower_components/bootstrap/less/panels.less";
+// @import "../bower_components/bootstrap/less/responsive-embed.less";
+// @import "../bower_components/bootstrap/less/wells.less";
+@import "../bower_components/bootstrap/less/close.less";
+
+// Components w/ JavaScript
+// @import "../bower_components/bootstrap/less/modals.less";
+// @import "../bower_components/bootstrap/less/tooltip.less";
+// @import "../bower_components/bootstrap/less/popovers.less";
+// @import "../bower_components/bootstrap/less/carousel.less";
+
+// Utility classes
+@import "../bower_components/bootstrap/less/utilities.less";
+@import "../bower_components/bootstrap/less/responsive-utilities.less";
+
+// Twitter Bootstrap's "variables.less" should already be imported
+
+// Core variables and mixins
+@import "../bower_components/jasny-bootstrap/less/variables.less";
+
+// Core CSS
+// @import "../bower_components/jasby-bootstrap/less/grid-container-smooth.less";
+// @import "../bower_components/jasby-bootstrap/less/button-labels.less";
+
+// Components
+// @import "../bower_components/jasby-bootstrap/less/nav-tab-alignment.less";
+@import "../bower_components/jasny-bootstrap/less/navmenu.less";
+// @import "../bower_components/jasby-bootstrap/less/alerts-fixed.less";
+
+// Components w/ JavaScript
+// @import "../bower_components/jasby-bootstrap/less/offcanvas.less";
+// @import "../bower_components/jasby-bootstrap/less/rowlink.less";
+// @import "../bower_components/jasby-bootstrap/less/fileinput.less";
+
+@import "../bower_components/bootswatch/sandstone/variables.less";
+@import "../bower_components/bootswatch/sandstone/bootswatch.less";
+
+//Navmenu
+@navmenu-width: 300px;
+@navmenu-default-color:             @gray-dark;
+@navmenu-default-bg:                @brand-primary;
+@navmenu-default-border:            @gray-darker;
+
+// Navmenu links
+@navmenu-default-link-color:                @navbar-default-link-hover-color;
+@navmenu-default-link-hover-color:          @navbar-default-link-hover-color;
+@navmenu-default-link-hover-bg:             transparent;
+@navmenu-default-link-active-color:         #fff;
+@navmenu-default-link-active-bg:            darken(@navmenu-default-bg, 6.5%);
+@navmenu-default-link-disabled-color:       #ccc;
+@navmenu-default-link-disabled-bg:          transparent;
+
+// Navmenu brand label
+@navmenu-default-brand-color:               #fff;
+@navmenu-default-brand-hover-color:         #fff;
+@navmenu-default-brand-hover-bg:            transparent;
+
+@link-color: @brand-primary;
+
+html {
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+body {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.25;
+    font-family: "Open Sans", sans-serif;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    background: @brand-primary;
+
+    @media (min-width: @screen-md) {
+        line-height: 1.375;
+    }
+    
+    h1:first-of-type{
+        padding-bottom: 21.5px;
+        margin: 23px 0;
+        border-bottom: 1px solid #eeeeee;
+    }
+}
+
+.body-wrapper {
+    overflow: hidden;
+}
+
+
+h2 {
+    padding-bottom: 21.5px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+li.theme-switcher{
+    padding: 0 15px;
+
+    span {
+        color: #fff;
+        display: block;
+        margin: 10px 0 5px;
+    }
+}
+
+.navbar-primary {
+  background-color: darken(@brand-primary,5%);
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+
+  .navbar-brand {
+    color: @brand-warning;
+    padding: 10px 15px;
+    font-size: 30px;
+    line-height: 40px;
+    &:hover,
+    &:focus {
+      color: @brand-warning;
+      background-color: @navbar-default-brand-hover-bg;
+    }
+    small {
+        font-size: 0.45em;
+        color: @brand-success;
+    }
+  }
+
+  // Links in navbars
+  //
+  // Add a class to ensure links outside the navbar nav are colored correctly.
+
+  .navbar-link {
+    color: @navbar-default-link-color;
+    &:hover {
+      color: @navbar-default-link-hover-color;
+    }
+  }
+
+  .btn-link {
+    color: @navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: @navbar-default-link-hover-color;
+    }
+    &[disabled],
+    fieldset[disabled] & {
+      &:hover,
+      &:focus {
+        color: @navbar-default-link-disabled-color;
+      }
+    }
+  }
+}
+
+.sidebar {
+    @media (min-width:@screen-sm){
+        float: left;
+        height: 100%;
+    }
+}
+.main-body{
+    overflow: hidden;
+    padding: 0 15px;
+    background: #fff;
+}
+
+.navmenu-default,
+.navbar-default .navbar-offcanvas {
+
+    border: none;
+    border-radius: 0;
+
+    .navmenu-section {
+        font-size: 22px;
+        padding:0 15px;
+        border: none;
+        color: @brand-warning;
+    }
+
+    .navmenu-nav {
+        // Remove background color from open dropdown
+        font-size: 15px;
+        line-height: auto;
+        text-transform: none;
+        font-weight: normal;
+        
+        a {
+            transition: all 0.2s ease;
+            padding: 5px 15px; 
+            &:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        &.dropdown-menu {
+            background-color: darken(@navmenu-default-bg, 2%);
+
+            & > .divider {
+                background-color: @navmenu-default-bg;
+            }
+            > .active > a {
+                &,
+                &:hover,
+                &:focus {
+                    background-color: darken(@navmenu-default-bg, 6.5%);
+                }
+            }
+        }
+    }
+}
+
+pre {
+    border-radius: @border-radius-base !important;
+
+    code {
+        font-size: 14px;
+    }
+}
+
+pre[class*='language-'] {
+    position: relative;
+}
+
+pre[class*='language-'] > code[data-language]::before {
+    content: attr(data-language);
+    color: #eee;
+    background-color: @gray;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.9em;
+    border-radius: 0 @border-radius-base 0 0;
+    padding: 0 0.5em;
+    text-shadow: none;
+}
+
+pre.line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+
+    & > code {
+        position: relative;
+    }
+
+    & .line-numbers-rows {
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        font-size: 100%;
+        left: -3.8em;
+        width: 3em; /* works for line-numbers below 1000 lines */
+        letter-spacing: -1px;
+        border-right: 1px solid #999;
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        & > span {
+            pointer-events: none;
+            display: block;
+            counter-increment: linenumber;
+
+            &:before {
+                content: counter(linenumber);
+                color: #999;
+                display: block;
+                padding-right: 0.8em;
+                text-align: right;
+            }
+        }
+    }
+}
+
+@loader-color: @brand-primary;
+.loader {
+    text-indent:-9999em;
+    margin:8em auto;
+    position:relative;
+    font-size:11px;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay:-0.16s;
+    animation-delay:-0.16s;
+
+    &, &:before, &:after {
+      background: @loader-color;
+      -webkit-animation:load 1s infinite ease-in-out;
+      animation:load 1s infinite ease-in-out;
+      width:1em;
+      height:4em;
+    }
+
+    &:before, &:after {
+      position:absolute;
+      top:0;
+      content:'';
+    }
+
+    &:before {
+      left:-1.5em;
+      -webkit-animation-delay:-0.32s;
+      animation-delay:-0.32s;
+    }
+
+
+    &:after {
+      left:1.5em;
+      -webkit-animation-delay: 0.32s;
+      animation-delay: 0.32s;
+    }
+}
+
+@-webkit-keyframes load {.load-frames;}
+@keyframes load {.load-frames;}
+
+.load-frames() {
+  0%,80%,100% {
+    box-shadow:0 0 @loader-color;
+    height:4em;
+  }
+  40% {
+    box-shadow:0 -2em @loader-color;
+    height:5em;
+  }
+}
+
+.token.tab:not(:empty):before,
+.token.cr:before,
+.token.lf:before {
+    color: hsl(24, 20%, 85%);
+}
+
+.token.tab:not(:empty){
+    width: 0;
+}
+
+.token.tab:not(:empty):before {
+    content: '\21E5';
+}
+
+.token.cr:before {
+    content: '\240D';
+}
+
+.token.crlf:before {
+    content: '\240D\240A';
+}
+.token.lf:before {
+    content: '\240A';
+}
