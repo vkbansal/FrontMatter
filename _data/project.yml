@@ -1,4 +1,4 @@
 title: "FrontMatter"
 tagline: "Page-specific variables at the top of a template"
 description: "Frontmatter allows page-specific variables to be included at the top of a template using the YAML or JSON format."
-base: ""
+base: "/FrontMatter"
