@@ -1,4 +1,6 @@
-#Chanelog
+---
+---
+#Changelog
 
 ##v1.3.1
 - Updated dependencies

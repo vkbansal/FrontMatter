@@ -1,3 +1,5 @@
+---
+---
 #Validate
 Checks if given content has valid structure. It automatically handles formats.
 

@@ -1,3 +1,5 @@
+---
+---
 #Dump
 Convert a document to frontmatted string.
 
