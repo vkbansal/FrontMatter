@@ -1,6 +1,7 @@
 ---
 ---
 #Basic Usage
+
 ```php
 <?php
 
@@ -29,6 +30,7 @@ EOF
 var_dump($doc->getConfig());
 var_dump($doc->getContent());
 ```
+
 ```php
 array (size=2)
   'layout' => string 'custom' (length=6)
