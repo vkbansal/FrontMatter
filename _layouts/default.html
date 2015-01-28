@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ site.data.project.title }}</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700 | Roboto+Slab' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" id="theme-tomorrow" href="{{ site.data.project.base }}/assets/css/prism-tomorrow.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-primary" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">{{ site.data.project.title }} <small>{{ site.data.project.tagline }}</small></a>
+        </div>
+    </nav>
+    <div class="body-wrapper">
+        <nav class="navmenu navmenu-default sidebar" role="navigation">
+            {% for links in site.data.menu %}
+                <h2 class="navmenu-section">{{ links[0] }}</h2>
+                <ul class="nav navmenu-nav">
+                {% for link in links[1] %}
+                    <li><a href="{{ site.data.project.base }}{{ link[1] }}">{{ link[0] }}</a></li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        </nav>
+        <div class="main-body">
+           {{ content }}
+        </div>
+    </div>
+    <script src="{{ site.data.project.base }}/assets/js/prism.js"></script>
+</body>
+</html>
