@@ -7,3 +7,4 @@ defaults:
       layout: "default"
 
 baseurl: /FrontMatter
+permalink: pretty
