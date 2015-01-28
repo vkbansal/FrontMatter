@@ -18,7 +18,6 @@ install:
   - composer install --prefer-source --no-interaction --dev
 
 script:
-  - vendor/bin/phpspec run -v
   - vendor/bin/phpunit -c phpunit.xml.dist
   - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 

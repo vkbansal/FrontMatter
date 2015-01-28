@@ -1,36 +1,32 @@
 {
     "name": "vkbansal/frontmatter",
-    "description": "Frontmatter allows page-specific variables to be included at the top of a template using the YAML or JSON format.",
-    "keywords": ["yaml", "front-matter", "parser", "frontmatter", "json", "front", "matter"],
+    "description": "Frontmatter allows page-specific variables to be included at the top of a template using the YAML,JSON or INI format.",
+    "keywords": ["yaml", "front-matter", "parser", "frontmatter", "json", "front", "matter", "ini", "metadata"],
+    "homepage": "https://github.com/vkbansal/FrontMatter",
+    "license": "MIT",
     "authors": [
         {
             "name": "Vivek Kumar Bansal",
-            "email": "contact@vkbansal.me"
+            "email": "contact@vkbansal.me",
+            "homepage": "http://vkbansal.me",
+            "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/vkbansal/FrontMatter"
-        }
-    ],
-    "license": "MIT",
-    "autoload": {
-        "psr-4" : {
-            "VKBansal\\FrontMatter\\": "src/"
-        }
-    },
     "require": {
         "php" : ">=5.4.0",
         "symfony/yaml": "2.6.*"
     },
     "require-dev": {
-        "phpspec/phpspec": "2.1.*",
         "phpunit/phpunit": "4.4.*"
+    },
+    "autoload": {
+        "psr-4" : {
+            "VKBansal\\FrontMatter\\": "src/"
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.3.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }
