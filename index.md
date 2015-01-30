@@ -1,4 +1,5 @@
 ---
+title: FrontMatter
 ---
 #FrontMatter
 [![Latest Stable Version](https://img.shields.io/packagist/v/vkbansal/FrontMatter.svg?style=flat-square)](https://packagist.org/packages/vkbansal/frontmatter)
@@ -14,6 +15,6 @@ Frontmatter allows page-specific variables to be included at the top of a templa
 - PHP >= 5.4
 
 ##Installation
-```
+~~~bash
 composer require vkbansal/frontmatter
-```
+~~~
