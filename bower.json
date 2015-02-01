@@ -1,9 +1,9 @@
 {
-  "name": "prism.php",
-  "version": "0.1.0",
-  "homepage": "https://github.com/vkbansal/prism.php",
+  "name": "gh-pages-theme",
+  "version": "1.0.0",
+  "homepage": "https://github.com/vkbansal",
   "authors": [
-    "Vivek Kumar Bansal <vkb0310@gmail.com>"
+    "Vivek Kumar Bansal <contact@vkbansal.me>"
   ],
   "license": "MIT",
   "private": true,
@@ -15,7 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "jasny-bootstrap": "~3.1.3",
-    "bootswatch": "~3.3.1"
+    "jasny-bootstrap": "~3.1.3"
   }
 }

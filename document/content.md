@@ -5,6 +5,7 @@
 Returns the body/content of the document.
 
 **Description**
+
 ```php
 string Document::getContent()
 ```
@@ -13,6 +14,7 @@ string Document::getContent()
 - the body/content of the document as string.
 
 **Usage**
+
 ```php
 $document->getContent();//'<body>Hello</body>'
 ```
@@ -21,6 +23,7 @@ $document->getContent();//'<body>Hello</body>'
 Sets the body/content of the document.
 
 **Description**
+
 ```php
 $this Document::setContent(string $content)
 ```
@@ -31,6 +34,7 @@ $this Document::setContent(string $content)
 - Current instance of document (`$this`). Makes Method Chainable.
 
 **Usage**
+
 ```php
 $document->setContent('Lorem ipsum');
 $document->getContent();//'Lorem ipsum'

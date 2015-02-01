@@ -5,9 +5,11 @@
 Returns config value(s).
 
 **Description**
+
 ```php
 mixed Document::getConfig([string $varName]);
 ```
+
 **Parameters**
 - `$varName`: Name of the config value to be retrieved (optional).
 
@@ -16,6 +18,7 @@ mixed Document::getConfig([string $varName]);
 - If an agrument is provided, it'll return corresponding value.
 
 **Usage**
+
 ```php
 $document->getConfig('title'); //'title'
 $document->getConfig(); //['title' => 'test', 'layout' => 'layout.html']
@@ -25,6 +28,7 @@ $document->getConfig(); //['title' => 'test', 'layout' => 'layout.html']
 This method sets config value(s).
 
 **Description**
+
 ```php
 $this Document::setConfig(mixed $prop [, mixed $value])
 ```
@@ -37,6 +41,7 @@ $this Document::setConfig(mixed $prop [, mixed $value])
 - Current instance of document (`$this`). Makes Method Chainable.
 
 **Usage**
+
 ```php
 $document->setConfig('title', 'Another Title');
 $document->getConfig(); //['title' => 'Another Title', 'layout' => 'layout.html']

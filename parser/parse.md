@@ -4,6 +4,7 @@
 Parses given input.
 
 **Description**
+
 ```php
 Document Parser::parse(string $input)
 ```
@@ -17,6 +18,7 @@ Document Parser::parse(string $input)
 
 
 **Usage**
+
 ```php
 <?php
 require '../vendor/autoload.php';

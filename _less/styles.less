@@ -68,8 +68,8 @@
 // @import "../bower_components/jasby-bootstrap/less/rowlink.less";
 // @import "../bower_components/jasby-bootstrap/less/fileinput.less";
 
-@import "../bower_components/bootswatch/sandstone/variables.less";
-@import "../bower_components/bootswatch/sandstone/bootswatch.less";
+@import "variables.less";
+//@import "bootswatch.less";
 
 //Navmenu
 @navmenu-width: 300px;
@@ -96,6 +96,7 @@
 html {
     font-size: 16px;
     line-height: 1.25;
+    background-color: darken(@brand-primary,5%);
 }
 
 body {
@@ -195,13 +196,12 @@ li.theme-switcher{
 }
 .main-body{
     overflow: hidden;
-    padding: 0 15px;
+    padding: 0 15px 30px;
     background: #fff;
 }
 
 .navmenu-default,
 .navbar-default .navbar-offcanvas {
-
     border: none;
     border-radius: 0;
 
@@ -244,12 +244,148 @@ li.theme-switcher{
     }
 }
 
-pre {
-    border-radius: @border-radius-base !important;
+blockquote{
+    background: #f6f6f6;
+    font-size: 1em;
+    border-color: #ddd;
+}
 
-    code {
-        font-size: 14px;
+footer.page-footer {
+    padding: 15px 0; 
+    background-color: darken(@brand-primary,5%);
+    color: #fff;
+    a {
+        color: @brand-warning;
     }
+}
+
+/**
+ * Code stlyes
+ */
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: @brand-primary;
+  background-color: lighten(@brand-primary, 57%);
+  border-radius: 4px;
+}
+
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #222;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    font-size: 17px;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+
+}
+
+
+/* Code blocks */
+pre[class*="language-"] {
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: #f6f6f6;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    padding: .1em;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #999;
+}
+
+.token.punctuation {
+    color: #333;
+}
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+    color: @brand-danger;
+}
+
+.token.boolean,
+.token.number {
+    color: #f08d49;
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol,
+.token.function,
+.token.function-name {
+    color: lighten(@brand-primary, 20%);
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+    color: @brand-danger;
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex {
+    color: @brand-warning;
+}
+
+
+.token.variable {
+    color: #333;
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+    color: @brand-success;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+.token.inserted {
+    color: green;
 }
 
 pre[class*='language-'] {
@@ -264,7 +400,7 @@ pre[class*='language-'] > code[data-language]::before {
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 0.9em;
+    font-size: 1.0625em;
     border-radius: 0 @border-radius-base 0 0;
     padding: 0 0.5em;
     text-shadow: none;

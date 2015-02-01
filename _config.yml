@@ -9,3 +9,4 @@ defaults:
 baseurl: /FrontMatter
 permalink: pretty
 markdown: redcarpet
+highlighter: null
