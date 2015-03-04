@@ -14,12 +14,8 @@ Frontmatter allows page-specific variables to be included at the top of a templa
 
 ##Installation
 Create or update your composer.json and run `composer update`
-```json
-{
-    "require": {
-        "vkbansal/frontmatter": "~1.3.0"
-    }
-}
+```bash
+$ composer require vkbansal/frontmatter
 ```
 ##Supported Formats
 
@@ -27,8 +23,7 @@ Create or update your composer.json and run `composer update`
 - JSON
 - INI
 
-##Usage
-###Parse
+## Quick usage
 ```php
 <?php
 
@@ -48,69 +43,23 @@ my_list:
 ---
 Main Title
 -----
-### Subtilte
+### Subtitle
 
 Lorem ipsum......
 EOF
 );
 
-var_dump($doc->getConfig());
+var_dump($doc->getConfig()); // ['layout' => 'custom', 'my_list' => ['one', 'two',  'three']]
 var_dump($doc->getContent());
-```
-```php
-array (size=2)
-  'layout' => string 'custom' (length=6)
-  'my_list' => 
-    array (size=3)
-      0 => string 'one' (length=3)
-      1 => string 'two' (length=3)
-      2 => string 'three' (length=5)
-
-string 'Main Title
------
-### Subtilte
-
-Lorem ipsum......' (length=48)
-```
-####Dump
-```php
-<?php
-
-$document = new Document('<body>Hello</body>', ['title' => 'test', 'layout' => 'layout.html']);
-
-$dump = Parser::dump($document);
-
-var_dump($dump);
-
-```
-```php
-string '---
-title: test
-layout: layout.html
----
-<body>Hello</body>' (length=58)
-```
-####Validation
-```php
-<?php
-Parser::isValid('Lorem ipsum....'); //false
-Parser::isValid(<<<EOF
----
-layout: custom
-my_list:
-    - one
-    - two
-    - three
----
+/*
 Main Title
 -----
-### Subtilte
+### Subtitle
 
-Lorem ipsum......
-EOF
-); //true
+Lorem ipsum.....
+*/
 ```
-For more detailed usage see [wiki](https://github.com/vkbansal/FrontMatter/wiki)
+For more detailed usage see [website](https://vkbansal.github.io/FrontMatter/)
 
 ##License
 [MIT](LICENSE.md)
