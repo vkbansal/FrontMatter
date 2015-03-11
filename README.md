@@ -4,6 +4,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/vkbansal/FrontMatter.svg?style=flat-square)](https://scrutinizer-ci.com/g/vkbansal/FrontMatter/?branch=master)
 [![Code Climate](https://img.shields.io/codeclimate/github/vkbansal/FrontMatter.svg?style=flat-square)](https://codeclimate.com/github/vkbansal/FrontMatter)
 [![License](https://img.shields.io/badge/Licence-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/vkbansal/frontmatter)
+[![Dependency Status](https://www.versioneye.com/user/projects/5476a723dfc6586ee7000102/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5476a723dfc6586ee7000102)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/8723ff04-60ac-43b2-b432-18fae0829979/big.png)](https://insight.sensiolabs.com/projects/8723ff04-60ac-43b2-b432-18fae0829979)
 #FrontMatter
