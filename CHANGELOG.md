@@ -10,6 +10,15 @@ All the changes can be found below. Order used:
 
 ##[master]
 
+##v1.3.2
+
+### Changed
+ - Updated dependencies
+   - `symfony/yaml` => '2.7.*'
+
+ - Updated dev dependencies
+   - `phpunit/phpunit` => '4.7.*'
+
 ##v1.3.1
 
 ### Changed
